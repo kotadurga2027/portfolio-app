@@ -1,0 +1,14 @@
+{
+  "visitors": 175,
+  "projects": 2,
+  "technologies": 8,
+  "featuredProjectLikes": {
+    "project1": 13,
+    "project2": 9
+  },
+  "endorsements": {
+    "thumbs": 13,
+    "hearts": 7,
+    "stars": 3
+  }
+}

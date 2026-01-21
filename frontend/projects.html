@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects - Kota Durga</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+<header class="navbar">
+  <div class="nav-left">
+    <h3 class="logo">KD</h3>
+  </div>
+
+  <nav class="nav-center" id="nav-links">
+    <a href="index.html">Home</a>
+    <a href="projects.html" class="active">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="endorsements.html">Endorsements</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger">☰</button>
+    <a href="assets/devops_engineer_kota_durga_resume.pdf" download class="btn blue small">
+      <i class="fas fa-download"></i> Download Resume
+    </a>
+  </div>
+</header>
+
+
+  <!-- Projects Page -->
+<div class="page-wrapper">
+<main class="page-content">
+  <section class="projects-page">
+    <h2>All Projects</h2>
+    <blockquote class="projects-quote">
+      DevOps tools, infrastructure as code, and automation—built for reliability and scale.
+    </blockquote>
+
+    <!-- Filters -->
+    <div class="filters">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Python</button>
+      <button class="filter-btn">Monitoring</button>
+      <button class="filter-btn">Prometheus</button>
+      <button class="filter-btn">AWS</button>
+      <button class="filter-btn">Terraform</button>
+      <button class="filter-btn">Kubernetes</button>
+      <button class="filter-btn">CI/CD</button>
+      <button class="filter-btn">GitHub Actions</button>
+      <button class="filter-btn">Jenkins</button>
+      <button class="filter-btn">Docker</button>
+      <button class="filter-btn">DevOps</button>
+    </div>
+
+    <!-- Project Grid -->
+    <div class="project-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card featured">
+        <span class="featured-badge">Featured</span>
+        <div class="project-header">
+          <h3>infra-health-monitor</h3>
+          <a href="https://github.com/kotadurga2027/infra-health-monitor" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <p>Python-based infrastructure health monitoring tool with automated checks and alerts.</p>
+        <div class="tags-likes">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Monitoring</span>
+            <span class="tag">Prometheus</span>
+          </div>
+            <div class="project-like" 
+            data-project="infra-health-monitor" onclick="toggleLike(this)">
+            <i class="fa-regular fa-heart"></i>
+            <span class="like-count">15</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card featured">
+        <span class="featured-badge">Featured</span>
+        <div class="project-header">
+          <h3>eks-self-healing-cluster</h3>
+          <a href="https://github.com/kotadurga2027/eks-self-healing-cluster" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <p>Terraform-driven EKS cluster with self-healing capabilities and high availability.</p>
+        <div class="tags-likes">
+          <div class="tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Kubernetes</span>
+          </div>
+            <div class="project-like"
+            data-project="eks-self-healing-cluster" onclick="toggleLike(this)">
+            <i class="fa-regular fa-heart"></i>
+            <span class="like-count">15</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3>ci-cd-pipeline-templates</h3>
+          <a href="https://github.com/kotadurga2027/ci-cd-pipeline-templates" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <p>Reusable CI/CD pipeline templates for GitHub Actions, Jenkins, and GitLab CI.</p>
+        <div class="tags-likes">
+          <div class="tags">
+            <span class="tag">CI/CD</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Jenkins</span>
+          </div>
+          <div class="likes"><i class="far fa-heart"></i> 15</div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-header">
+          <h3>docker-compose-stacks</h3>
+          <a href="https://github.com/kotadurga2027/docker-compose-stacks" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <p>Production-ready Docker Compose configurations for multi-service applications.</p>
+        <div class="tags-likes">
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">DevOps</span>
+          </div>
+          <div class="likes"><i class="far fa-heart"></i> 6</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="footer-content">
+    <p class="footer-left">© 2026 Kota Durga · DevOps Portfolio</p>
+    <div class="footer-right">
+      <a href="assets/devops_engineer_kota_durga_resume.pdf" download>
+        <i class="fas fa-file-alt"></i> Resume
+      </a>
+      <a href="https://github.com/kotadurga2027" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/kotadurga2027" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="mailto:kotadurga.devops@gmail.com">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kota Durga | DevOps Engineer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+<header class="navbar">
+  <div class="nav-left">
+    <h3 class="logo">KD</h3>
+  </div>
+
+  <nav class="nav-center" id="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="endorsements.html">Endorsements</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger">☰</button>
+    <a href="assets/devops_engineer_kota_durga_resume.pdf" download class="btn blue small">
+      <i class="fas fa-download"></i> Download Resume
+    </a>
+  </div>
+</header>
+
+
+
+
+
+  <!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-layout">
+      <div class="hero-image">
+        <img src="assets/images/profile.jpeg" alt="Kota Durga">
+      </div>
+
+      <div class="hero-content">
+        <p class="intro">Hello, I'm</p>
+        <h1>Kota Durga</h1>
+        <h2 class="blue-text">And I'm a DevOps Engineer!</h2>
+
+        <p class="hero-desc">
+          I design and build automated, scalable, and reliable cloud infrastructure using DevOps best practices and modern tooling.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://github.com/kotadurga2027" class="btn outline">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          <a href="https://www.linkedin.com/in/kota-durga/" class="btn outline">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="contact.html" class="btn pink">
+            <i class="fas fa-envelope"></i> Contact Me
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <h3>6+</h3>
+        <p>Years of Experience</p>
+      </div>
+      <div class="stat-item">
+        <h3 id="projectCount">0</h3>
+        <p>Projects Completed</p>
+      </div>
+      <div class="stat-item">
+        <h3 id="techCount">0</h3>
+        <p>Technologies Mastered</p>
+      </div>
+      <div class="stat-item">
+        <h3 id="visitorCount">0+</h3>
+        <p>Visitors</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Featured Projects -->
+<section class="home-projects">
+  <h2>Featured Projects</h2>
+  <div class="project-preview-container">
+    <div class="project-preview-grid">
+      <!-- Project 1 -->
+      <div class="project-preview-card">
+        <div class="card-header">
+          <h3>infra-health-monitor</h3>
+          <a href="https://github.com/kotadurga2027/infra-health-monitor" target="_blank">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+        <p>Infra health checks with Python alerts.</p>
+        <div class="tags-likes">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Monitoring</span>
+          </div>
+         <div class="project-like" 
+            data-project="infra-health-monitor" onclick="toggleLike(this)">
+            <i class="fa-regular fa-heart"></i>
+            <span class="like-count">15</span>
+          </div>
+      </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-preview-card">
+        <div class="card-header">
+          <h3>eks-self-healing-cluster</h3>
+          <a href="https://github.com/kotadurga2027/eks-self-healing-cluster" target="_blank">
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+        <p>Terraform EKS with auto-recovery.</p>
+        <div class="tags-likes">
+          <div class="tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Terraform</span>
+            <span class="tag">Kubernetes</span>
+          </div>
+          <div class="project-like" 
+            data-project="eks-self-healing-cluster" onclick="toggleLike(this)">
+            <i class="fa-regular fa-heart"></i>
+            <span class="like-count">15</span>
+          </div>
+        </div>
+      </div>
+    <div class="view-all">
+      <a href="projects.html">View all projects →</a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- SKILLS SNAPSHOT -->
+<section class="home-skills">
+  <h2>Skills</h2>
+  <div class="skill-tags">
+    <span class="skill-tag">AWS</span>
+    <span class="skill-tag">Azure</span>
+    <span class="skill-tag">Docker</span>
+    <span class="skill-tag">Kubernetes</span>
+    <span class="skill-tag">Terraform</span>
+    <span class="skill-tag">Ansible</span>
+    <span class="skill-tag">Jenkins</span>
+    <span class="skill-tag">GitHub Actions</span>
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">Bash</span>
+  </div>
+  <div class="explore-skills">
+    <a href="skills.html">Explore skills →</a>
+  </div>
+</section>
+
+<section class="endorsements-preview">
+  <h2>Endorsements</h2>
+
+  <div class="endorsement-grid">
+
+    <div class="endorsement-card">
+      <p class="endorsement-text">
+        "Kota's expertise in Kubernetes and Terraform has significantly improved our deployment pipeline. Highly recommend!"
+      </p>
+
+      <div class="endorsement-footer">
+        <div>
+          <strong>Alex Chen</strong>
+          <span>Senior SRE</span>
+        </div>
+
+        <div class="endorsement-stats">
+          👍 <span id="endorseThumbs">0</span>
+          &nbsp; ❤️ <span id="endorseHearts">0</span>
+          &nbsp; ⭐ <span id="endorseStars">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="endorsement-card">
+      <p class="endorsement-text">
+        "Great problem-solver with deep understanding of cloud infrastructure. A pleasure to work with!"
+      </p>
+
+      <div class="endorsement-footer">
+        <div>
+          <strong>Priya Sharma</strong>
+          <span>Tech Lead</span>
+        </div>
+
+        <div class="endorsement-stats">
+          👍 <span id="endorseThumbs">0</span>
+          &nbsp; ❤️ <span id="endorseHearts">0</span>
+          &nbsp; ⭐ <span id="endorseStars">0</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <a href="endorsements.html" class="view-all">
+    View all endorsements →
+  </a>
+</section>
+
+<!-- =========================
+     SKILL VOTING SECTION
+========================= -->
+<section class="skill-vote">
+  <h2>🏆 Vote for Best Skill</h2>
+
+  <div class="vote-list">
+
+    <div class="vote-item" data-percent="30">
+      <span class="skill-name">🏆 Kubernetes</span>
+      <span class="vote-count">24 votes (30%)</span>
+      <button class="btn outline small">✔ Vote</button>
+    </div>
+
+    <div class="vote-item" data-percent="23">
+      <span class="skill-name">Terraform</span>
+      <span class="vote-count">18 votes (23%)</span>
+      <button class="btn outline small">✔ Vote</button>
+    </div>
+
+    <div class="vote-item" data-percent="19">
+      <span class="skill-name">AWS</span>
+      <span class="vote-count">15 votes (19%)</span>
+      <button class="btn outline small">✔ Vote</button>
+    </div>
+
+    <div class="vote-item" data-percent="15">
+      <span class="skill-name">Docker</span>
+      <span class="vote-count">12 votes (15%)</span>
+      <button class="btn outline small">✔ Vote</button>
+    </div>
+
+    <div class="vote-item" data-percent="13">
+      <span class="skill-name">CI/CD</span>
+      <span class="vote-count">10 votes (13%)</span>
+      <button class="btn outline small">✔ Vote</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- =========================
+     PROGRESS FILL HELPER
+========================= -->
+<script>
+  document.querySelectorAll(".vote-item").forEach(item => {
+    item.style.setProperty("--percent", item.dataset.percent);
+  });
+</script>
+
+<!-- =========================
+     QUICK FEEDBACK
+========================= -->
+<section class="quick-feedback">
+  <h2 class="feedback-title">
+    💬 Quick Feedback
+  </h2>
+
+  <p class="feedback-sub">
+    How would you rate this portfolio?
+  </p>
+
+  <div class="feedback-box">
+
+    <div class="rating-options">
+      <div class="rating-card">😕<span>Needs Work</span></div>
+      <div class="rating-card">🙂<span>Okay</span></div>
+      <div class="rating-card">😊<span>Good</span></div>
+      <div class="rating-card active">😄<span>Great</span></div>
+      <div class="rating-card">🤩<span>Amazing</span></div>
+    </div>
+
+    <textarea
+      class="feedback-input"
+      placeholder="Any additional comments? (optional)"
+    ></textarea>
+
+    <button class="feedback-submit">
+      ➜ Submit Feedback
+    </button>
+
+  </div>
+</section>
+
+
+
+  <!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <p class="footer-left">© 2026 Kota Durga · DevOps Portfolio</p>
+    <div class="footer-right">
+      <a href="assets/devops_engineer_kota_durga_resume.pdf" download>
+        <i class="fas fa-file-alt"></i> Resume
+      </a>
+      <a href="https://github.com/kotadurga2027" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/kotadurga2027" target="_blank">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="mailto:kotadurga.devops@gmail.com">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="script.js"></script>
+</body>
+</html>
