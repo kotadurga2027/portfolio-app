@@ -32,7 +32,7 @@ const visitedKey = "portfolio_visited";
 
 if (!localStorage.getItem(visitedKey)) {
   // increment once
-  fetch("http://localhost:5000/api/stats/visit", { method: "POST" })
+  fetch("https://portfolio-backend-bf4r.onrender.com/api/stats/visit", { method: "POST" })
     .then(res => res.json())
     .then(data => {
       const el = document.getElementById("visitorCount");
@@ -41,7 +41,7 @@ if (!localStorage.getItem(visitedKey)) {
     });
 } else {
   // just read current count
-  fetch("http://localhost:5000/api/stats")
+  fetch("https://portfolio-backend-bf4r.onrender.com/api/stats")
     .then(res => res.json())
     .then(data => {
       const el = document.getElementById("visitorCount");
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (localStorage.getItem(key)) return; // already liked
 
-      fetch(`http://localhost:5000/api/endorsements/${id}/like`, { method: "POST" })
+      fetch(`https://portfolio-backend-bf4r.onrender.com/api/endorsements/${id}/like`, { method: "POST" })
         .then(res => res.json())
         .then(data => {
           if (data.success) {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return card;
   }
   // Load endorsements on page load
-  fetch("http://localhost:5000/api/endorsements")
+  fetch("https://portfolio-backend-bf4r.onrender.com/api/endorsements")
     .then(res => res.json())
     .then(endorsements => {
       endorsements.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         message: form.message.value
       };
 
-      fetch("http://localhost:5000/api/endorsements", {
+      fetch("https://portfolio-backend-bf4r.onrender.com/api/endorsements", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const key = "liked_" + p.id;
       if (localStorage.getItem(key)) return; // already liked
 
-      fetch(`http://localhost:5000/api/projects/${p.id}/like`, { method: "POST" })
+      fetch(`https://portfolio-backend-bf4r.onrender.com/api/projects/${p.id}/like`, { method: "POST" })
         .then(res => res.json())
         .then(data => {
           if (data.success) {
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // load all projects
   function loadProjects() {
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/projects")
       .then(res => res.json())
       .then(projects => {
         if (projectCount) projectCount.innerText = projects.length;
@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // load skills
   function loadSkills() {
-    fetch("http://localhost:5000/api/skills")
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/skills")
       .then(res => res.json())
       .then(skills => {
         if (skillsGrid) {
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!homeSkillTags) return;
 
-  fetch("http://localhost:5000/api/skills")
+  fetch("https://portfolio-backend-bf4r.onrender.com/api/skills")
     .then(res => res.json())
     .then(skills => {
       homeSkillTags.innerHTML = "";
@@ -352,7 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch("https://portfolio-backend-bf4r.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message })
