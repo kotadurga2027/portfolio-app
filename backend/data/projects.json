@@ -1,0 +1,22 @@
+{
+  "projectsList": [
+    {
+      "id": "infra-health-monitor",
+      "title": "infra-health-monitor",
+      "description": "Python-based infrastructure health monitoring tool with automated checks and alerts.",
+      "tags": ["Python", "Monitoring", "Prometheus"],
+      "github": "https://github.com/kotadurga2027/infra-health-monitor",
+      "featured": true,
+      "likes": 15
+    },
+    {
+      "id": "eks-self-healing-cluster",
+      "title": "eks-self-healing-cluster",
+      "description": "Terraform-driven EKS cluster with self-healing capabilities and high availability.",
+      "tags": ["AWS", "Terraform", "Kubernetes"],
+      "github": "https://github.com/kotadurga2027/eks-self-healing-cluster",
+      "featured": true,
+      "likes": 15
+    }
+  ]
+}

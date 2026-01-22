@@ -1,0 +1,40 @@
+{
+  "skillsList": [
+    {
+      "id": "aws",
+      "name": "AWS Cloud Services",
+      "iconClass": "aws",
+      "tags": ["AWS EC2", "VPC", "IAM", "S3", "EKS", "ALB"]
+    },
+    {
+      "id": "iac",
+      "name": "Infrastructure as Code",
+      "iconClass": "iac",
+      "tags": ["Terraform", "Ansible"]
+    },
+    {
+      "id": "cicd",
+      "name": "CI/CD & Version Control",
+      "iconClass": "cicd",
+      "tags": ["Jenkins", "GitHub Actions", "Git"]
+    },
+    {
+      "id": "k8s",
+      "name": "Containers & Orchestration",
+      "iconClass": "k8s",
+      "tags": ["Docker", "Kubernetes"]
+    },
+    {
+      "id": "monitor",
+      "name": "Monitoring & Logging",
+      "iconClass": "monitor",
+      "tags": ["Grafana", "Checkmk", "CloudWatch"]
+    },
+    {
+      "id": "os",
+      "name": "OS & Scripting",
+      "iconClass": "os",
+      "tags": ["Linux (RHEL)", "Bash", "Python", "boto3"]
+    }
+  ]
+}

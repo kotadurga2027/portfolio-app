@@ -25,27 +25,4 @@ router.post("/visit", (req, res) => {
   res.json({ visitors: data.visitors });
 });
 
-/* =========================
-   LIKE FEATURED PROJECT
-   (PERSISTENT)
-========================= */
-router.post("/like", (req, res) => {
-  const { project } = req.body;
-
-  const data = JSON.parse(fs.readFileSync(dataPath));
-
-  if (data.featuredProjectLikes[project] === undefined) {
-    return res.status(400).json({ error: "Invalid project" });
-  }
-
-  data.featuredProjectLikes[project] += 1;
-
-  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-
-  res.json({
-    project,
-    likes: data.featuredProjectLikes[project]
-  });
-});
-
 module.exports = router;
