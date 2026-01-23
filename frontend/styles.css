@@ -1006,6 +1006,9 @@ html, body {
     rgba(56, 189, 248, 0.05)
   );
   z-index: 0;
+
+  /* Smooth animation */
+  transition: width 0.6s ease-in-out;
 }
 
 /* Responsive tweak: collapse to single column on smaller screens */

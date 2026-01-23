@@ -377,57 +377,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /*voting section*/
 /**************/
-
 document.addEventListener("DOMContentLoaded", () => {
   const voteList = document.querySelector(".vote-list");
   if (!voteList) return;
 
-  // Load voting skills from backend
+  // Function to render skills
+  function renderSkills(skills) {
+    voteList.innerHTML = "";
+    const totalVotes = skills.reduce((sum, s) => sum + s.votes, 0);
+
+    skills.forEach(s => {
+      const percent = totalVotes > 0 ? Math.round((s.votes / totalVotes) * 100) : 0;
+
+      const item = document.createElement("div");
+      item.className = "vote-item";
+      item.dataset.percent = percent;
+
+      item.innerHTML = `
+        <span class="skill-name">${s.name}</span>
+        <span class="vote-count">${s.votes} votes (${percent}%)</span>
+        <button class="btn outline small" data-id="${s.id}">✔ Vote</button>
+      `;
+
+      // Attach vote handler
+      const btn = item.querySelector("button");
+      btn.addEventListener("click", () => {
+        fetch(`https://portfolio-backend-bf4r.onrender.com/api/voting/${s.id}`, {
+          method: "POST"
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              // Re-fetch skills to update percentages + progress fill
+              fetch("https://portfolio-backend-bf4r.onrender.com/api/voting")
+                .then(res => res.json())
+                .then(updatedSkills => renderSkills(updatedSkills));
+            }
+          })
+          .catch(err => console.error("Vote error:", err));
+      });
+
+      voteList.appendChild(item);
+
+      // Apply progress fill immediately
+      item.style.setProperty("--percent", item.dataset.percent);
+    });
+  }
+
+  // Initial load
   fetch("https://portfolio-backend-bf4r.onrender.com/api/voting")
     .then(res => res.json())
-    .then(skills => {
-      voteList.innerHTML = "";
-
-      skills.forEach(s => {
-        const item = document.createElement("div");
-        item.className = "vote-item";
-        item.dataset.percent = s.percent; // store percent for CSS fill
-
-        item.innerHTML = `
-          <span class="skill-name">${s.name}</span>
-          <span class="vote-count">${s.votes} votes (${s.percent}%)</span>
-          <button class="btn outline small" data-id="${s.id}">✔ Vote</button>
-        `;
-
-        // Attach vote handler
-        const btn = item.querySelector("button");
-        btn.addEventListener("click", () => {
-          fetch(`https://portfolio-backend-bf4r.onrender.com/api/voting/${s.id}`, {
-            method: "POST"
-          })
-            .then(res => res.json())
-            .then(data => {
-              if (data.success) {
-                // Update count
-                const newPercent = skills.reduce((sum, skill) => sum + skill.votes, 0) + 1;
-                item.querySelector(".vote-count").innerText = `${data.votes} votes`;
-                btn.disabled = true;
-
-                // Update progress fill
-                item.dataset.percent = data.percent || 0;
-                item.style.setProperty("--percent", item.dataset.percent);
-              }
-            })
-            .catch(err => console.error("Vote error:", err));
-        });
-
-        voteList.appendChild(item);
-      });
-
-      // Apply progress fill for all items (like your old inline script)
-      document.querySelectorAll(".vote-item").forEach(item => {
-        item.style.setProperty("--percent", item.dataset.percent);
-      });
-    })
+    .then(skills => renderSkills(skills))
     .catch(err => console.error("Voting section error:", err));
 });
