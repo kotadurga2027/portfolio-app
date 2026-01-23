@@ -476,7 +476,7 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("feedbackSubmitted", "true"); // mark as submitted
           submitBtn.disabled = true; // prevent multiple submissions
           submitBtn.classList.add("success"); // apply success style
-          submitBtn.textContent = "✔ Submitted"; // change button text only
+          submitBtn.innerText = "✔ Submitted"; // change button text only
         } else {
           alert("❌ Something went wrong. Please try again.");
         }
