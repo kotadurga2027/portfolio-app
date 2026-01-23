@@ -430,3 +430,52 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(skills => renderSkills(skills))
     .catch(err => console.error("Voting section error:", err));
 });
+
+/*feedback Section */
+/*******************/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const ratingCards = document.querySelectorAll(".rating-card");
+  const feedbackInput = document.querySelector(".feedback-input");
+  const submitBtn = document.querySelector(".feedback-submit");
+
+  let selectedRating = document.querySelector(".rating-card.active span")?.innerText || "";
+
+  // Handle rating selection
+  ratingCards.forEach(card => {
+    card.addEventListener("click", () => {
+      ratingCards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      selectedRating = card.querySelector("span").innerText;
+    });
+  });
+
+  // Handle feedback submission
+  submitBtn.addEventListener("click", () => {
+    const comment = feedbackInput.value.trim();
+
+    if (!selectedRating) {
+      alert("Please select a rating before submitting.");
+      return;
+    }
+
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ rating: selectedRating, comment })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("✅ Thanks for your feedback!");
+          submitBtn.disabled = true; // prevent multiple submissions
+        } else {
+          alert("❌ Something went wrong. Please try again.");
+        }
+      })
+      .catch(err => {
+        console.error("Feedback error:", err);
+        alert("❌ Error submitting feedback.");
+      });
+  });
+});

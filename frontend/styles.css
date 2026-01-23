@@ -1059,7 +1059,7 @@ html, body {
 
   background: #020617;
   border: 1px solid #1e293b;
-  border-radius: 12px;
+  border-radius: 8px;
 
   display: flex;
   flex-direction: column;
@@ -1067,7 +1067,17 @@ html, body {
   justify-content: center;
 
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+}
+
+.rating-card:hover {
+  background: rgba(56, 189, 248, 0.1); /* subtle hover glow */
+}
+
+.rating-card.active {
+  border: 2px solid #38bdf8;           /* highlight border */
+  background: rgba(56, 189, 248, 0.15); /* soft background glow */
+  transform: scale(1.05);              /* slight zoom */
 }
 
 .rating-card span {
@@ -1077,10 +1087,10 @@ html, body {
 }
 
 /* Active rating */
-.rating-card.active {
+/* .rating-card.active {
   background: rgba(56, 189, 248, 0.12);
   border-color: #38bdf8;
-}
+} */
 
 /* Textarea */
 .feedback-input {
