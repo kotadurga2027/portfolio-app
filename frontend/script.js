@@ -473,10 +473,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          localStorage.setItem("feedbackSubmitted", "true");
-          submitBtn.disabled = true;
-          submitBtn.classList.add("success"); // triggers fade-in animation
-
+          localStorage.setItem("feedbackSubmitted", "true"); // mark as submitted
+          submitBtn.disabled = true; // prevent multiple submissions
+          submitBtn.classList.add("success"); // apply success style
+          submitBtn.textContent = "✔ Submitted"; // change button text only
         } else {
           alert("❌ Something went wrong. Please try again.");
         }

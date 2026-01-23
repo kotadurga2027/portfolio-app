@@ -1130,9 +1130,12 @@ html, body {
   animation: fadeInSuccess 0.6s ease forwards;
 }
 
-.feedback-submit.success::after {
-  content: " ✔ Submitted";
-  margin-left: 0.5rem;
+.feedback-submit.success {
+  background-color: #22c55e;   /* green */
+  color: #fff;
+  border: none;
+  cursor: default;
+  animation: fadeInSuccess 0.6s ease forwards;
 }
 
 @keyframes fadeInSuccess {
