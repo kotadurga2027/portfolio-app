@@ -16,7 +16,7 @@ function writeFeedback(data) {
 // POST /api/feedback → Save new feedback
 router.post("/", (req, res) => {
   const { rating, comment } = req.body;
-
+  
   if (!rating || typeof rating !== "string") {
     return res.status(400).json({ success: false, error: "Rating is required" });
   }
@@ -27,6 +27,7 @@ router.post("/", (req, res) => {
     comment: comment || "",
     timestamp: new Date().toISOString()
   };
+  console.log("Received feedback:", req.body);
 
   data.feedback.push(entry);
   writeFeedback(data);
