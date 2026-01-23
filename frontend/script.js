@@ -473,7 +473,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          alert("✅ Thanks for your feedback!");
           localStorage.setItem("feedbackSubmitted", "true");
           submitBtn.disabled = true;
           submitBtn.classList.add("success"); // triggers fade-in animation
