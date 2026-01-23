@@ -934,43 +934,68 @@ html, body {
 }
 
 /* Voting Skills */
+.skill-vote {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.skill-vote h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
 .vote-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 1.2rem;
 }
-
 .vote-item {
-  background: #222;
-  padding: 15px;
-  border-radius: 8px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 1.5rem;
+
+  height: 58px; /* SLIM like Lovable */
+  padding: 0 1.2rem;
+
+  border-radius: 12px;
+  background: #020617;
+  border: 1px solid #1e293b;
+  overflow: hidden;
+}
+.vote-item > * {
+  position: relative;
+  z-index: 1;
 }
 
-.vote-item .skill-name {
-  font-weight: bold;
-  margin-bottom: 8px;
+.vote-item.active {
+  border-color: #38bdf8;
+  background: linear-gradient(
+    to right,
+    rgba(56,189,248,0.15),
+    rgba(2,6,23,0.8)
+  );
 }
 
-.vote-item .vote-count {
-  margin-bottom: 10px;
-  font-size: 0.9em;
-  color: #ccc;
+.skill-name {
+  font-weight: 600;
 }
 
-.vote-item button {
-  align-self: flex-start;
+.vote-count {
+  font-size: 0.9rem;
+  color: #94a3b8;
 }
 
-/* Responsive tweak: collapse to 1 column on small screens */
+
+/* Responsive tweak: collapse to single column on smaller screens */
 @media (max-width: 768px) {
   .vote-list {
     grid-template-columns: 1fr;
   }
 }
+
 
 /* PROGRESS FILL */
 .vote-item::before {
