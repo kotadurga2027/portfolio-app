@@ -452,6 +452,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Handle feedback submission
   submitBtn.addEventListener("click", () => {
+    // Check if feedback already submitted in this browser
+    if (localStorage.getItem("feedbackSubmitted")) {
+      alert("🟢 You already submitted feedback. Thank you!");
+      return;
+    }
+
     const comment = feedbackInput.value.trim();
 
     if (!selectedRating) {
@@ -468,7 +474,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         if (data.success) {
           alert("✅ Thanks for your feedback!");
-          submitBtn.disabled = true; // prevent multiple submissions
+          localStorage.setItem("feedbackSubmitted", "true");
+          submitBtn.disabled = true;
+          submitBtn.classList.add("success"); // triggers fade-in animation
+
         } else {
           alert("❌ Something went wrong. Please try again.");
         }
