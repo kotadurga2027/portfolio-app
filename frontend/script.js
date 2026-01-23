@@ -374,3 +374,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/*voting section*/
+/**************/
+
+document.addEventListener("DOMContentLoaded", () => {
+  const voteList = document.querySelector(".vote-list");
+
+  if (!voteList) return;
+
+  // Load voting skills
+  fetch("https://portfolio-backend-bf4r.onrender.com/api/voting")
+    .then(res => res.json())
+    .then(skills => {
+      voteList.innerHTML = "";
+
+      skills.forEach(s => {
+        const item = document.createElement("div");
+        item.className = "vote-item";
+        item.innerHTML = `
+          <span class="skill-name">${s.name}</span>
+          <span class="vote-count">${s.votes} votes (${s.percent}%)</span>
+          <button class="btn outline small" data-id="${s.id}">✔ Vote</button>
+        `;
+
+        // Attach vote handler
+        const btn = item.querySelector("button");
+        btn.addEventListener("click", () => {
+          fetch(`https://portfolio-backend-bf4r.onrender.com/api/voting/${s.id}`, { method: "POST" })
+            .then(res => res.json())
+            .then(data => {
+              if (data.success) {
+                btn.disabled = true; // prevent multiple votes
+                item.querySelector(".vote-count").innerText = `${data.votes} votes`;
+              }
+            });
+        });
+
+        voteList.appendChild(item);
+      });
+    })
+    .catch(err => console.error("Voting section error:", err));
+});

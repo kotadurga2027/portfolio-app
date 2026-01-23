@@ -10,6 +10,7 @@ app.use("/api/endorsements", require("./routes/endorsements"));
 app.use("/api/projects", require("./routes/projects"));
 app.use("/api/skills", require("./routes/skills"));
 app.use("/api/contact", require("./routes/contact"));
+app.use("/api/voting", require("./routes/voting"));
 
 
 // global error handler (future‑proof)

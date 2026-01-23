@@ -1,0 +1,12 @@
+{
+  "votingSkills": [
+    { "id": "aws", "name": "AWS Services", "votes": 0 },
+    { "id": "terraform", "name": "Terraform", "votes": 0 },
+    { "id": "kubernetes", "name": "Kubernetes", "votes": 0 },
+    { "id": "docker", "name": "Docker", "votes": 0 },
+    { "id": "ansible", "name": "Ansible", "votes": 0 },
+    { "id": "jenkins", "name": "Jenkins", "votes": 0 },
+    { "id": "linux", "name": "Linux", "votes": 0 },
+    { "id": "problem-solving", "name": "Problem Solving & Debugging", "votes": 0 }
+  ]
+}
