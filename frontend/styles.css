@@ -934,8 +934,9 @@ html, body {
 }
 
 /* Voting Skills */
+/* Voting Section Container */
 .skill-vote {
-  max-width: 760px;
+  max-width: 960px;   /* widened from 760px */
   margin: 0 auto;
   padding: 4rem 1.5rem;
 }
@@ -945,11 +946,14 @@ html, body {
   margin-bottom: 2.5rem;
 }
 
+/* Two-column layout */
 .vote-list {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  gap: 1.2rem;
+  grid-template-columns: repeat(2, 1fr); /* two equal columns */
+  gap: 1.5rem; /* slightly increased spacing */
 }
+
+/* Voting Item Card */
 .vote-item {
   position: relative;
   display: grid;
@@ -957,7 +961,7 @@ html, body {
   align-items: center;
   gap: 1.5rem;
 
-  height: 58px; /* SLIM like Lovable */
+  min-height: 72px; /* increased from 58px for breathing room */
   padding: 0 1.2rem;
 
   border-radius: 12px;
@@ -965,6 +969,7 @@ html, body {
   border: 1px solid #1e293b;
   overflow: hidden;
 }
+
 .vote-item > * {
   position: relative;
   z-index: 1;
@@ -986,18 +991,10 @@ html, body {
 .vote-count {
   font-size: 0.9rem;
   color: #94a3b8;
+  word-break: break-word; /* prevents overflow for long names */
 }
 
-
-/* Responsive tweak: collapse to single column on smaller screens */
-@media (max-width: 768px) {
-  .vote-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* PROGRESS FILL */
+/* Progress Fill */
 .vote-item::before {
   content: "";
   position: absolute;
@@ -1009,6 +1006,13 @@ html, body {
     rgba(56, 189, 248, 0.05)
   );
   z-index: 0;
+}
+
+/* Responsive tweak: collapse to single column on smaller screens */
+@media (max-width: 768px) {
+  .vote-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* =========================

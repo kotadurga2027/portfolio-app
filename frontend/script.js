@@ -380,10 +380,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const voteList = document.querySelector(".vote-list");
-
   if (!voteList) return;
 
-  // Load voting skills
+  // Load voting skills from backend
   fetch("https://portfolio-backend-bf4r.onrender.com/api/voting")
     .then(res => res.json())
     .then(skills => {
@@ -392,6 +391,8 @@ document.addEventListener("DOMContentLoaded", () => {
       skills.forEach(s => {
         const item = document.createElement("div");
         item.className = "vote-item";
+        item.dataset.percent = s.percent; // store percent for CSS fill
+
         item.innerHTML = `
           <span class="skill-name">${s.name}</span>
           <span class="vote-count">${s.votes} votes (${s.percent}%)</span>
@@ -401,17 +402,31 @@ document.addEventListener("DOMContentLoaded", () => {
         // Attach vote handler
         const btn = item.querySelector("button");
         btn.addEventListener("click", () => {
-          fetch(`https://portfolio-backend-bf4r.onrender.com/api/voting/${s.id}`, { method: "POST" })
+          fetch(`https://portfolio-backend-bf4r.onrender.com/api/voting/${s.id}`, {
+            method: "POST"
+          })
             .then(res => res.json())
             .then(data => {
               if (data.success) {
-                btn.disabled = true; // prevent multiple votes
+                // Update count
+                const newPercent = skills.reduce((sum, skill) => sum + skill.votes, 0) + 1;
                 item.querySelector(".vote-count").innerText = `${data.votes} votes`;
+                btn.disabled = true;
+
+                // Update progress fill
+                item.dataset.percent = data.percent || 0;
+                item.style.setProperty("--percent", item.dataset.percent);
               }
-            });
+            })
+            .catch(err => console.error("Vote error:", err));
         });
 
         voteList.appendChild(item);
+      });
+
+      // Apply progress fill for all items (like your old inline script)
+      document.querySelectorAll(".vote-item").forEach(item => {
+        item.style.setProperty("--percent", item.dataset.percent);
       });
     })
     .catch(err => console.error("Voting section error:", err));
