@@ -7,6 +7,6 @@
     { "id": "ansible", "name": "Ansible", "votes": 0 },
     { "id": "jenkins", "name": "Jenkins", "votes": 0 },
     { "id": "linux", "name": "Linux", "votes": 0 },
-    { "id": "problem-solving", "name": "Problem Solving & Debugging", "votes": 0 }
+    { "id": "problem-solving", "name": "Problem Solving & troubleshooting", "votes": 0 }
   ]
 }
