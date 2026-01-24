@@ -551,32 +551,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Acquired
           if (data.certifications.acquired?.length) {
+            const acquiredGroup = document.createElement("div");
+            acquiredGroup.className = "cert-group";
+
             const acquiredTitle = document.createElement("h4");
             acquiredTitle.textContent = "Acquired Certifications";
-            certContainer.appendChild(acquiredTitle);
+            acquiredGroup.appendChild(acquiredTitle);
+
+            const acquiredList = document.createElement("div");
+            acquiredList.className = "cert-list";
 
             data.certifications.acquired.forEach(cert => {
               const pill = document.createElement("span");
               pill.className = "cert-pill";
               pill.textContent = cert;
-              certContainer.appendChild(pill);
+              acquiredList.appendChild(pill);
             });
+
+            acquiredGroup.appendChild(acquiredList);
+            certContainer.appendChild(acquiredGroup);
           }
 
           // Planned
           if (data.certifications.planned?.length) {
+            const plannedGroup = document.createElement("div");
+            plannedGroup.className = "cert-group";
+
             const plannedTitle = document.createElement("h4");
             plannedTitle.textContent = "Planned Certifications";
-            certContainer.appendChild(plannedTitle);
+            plannedGroup.appendChild(plannedTitle);
+
+            const plannedList = document.createElement("div");
+            plannedList.className = "cert-list";
 
             data.certifications.planned.forEach(cert => {
               const pill = document.createElement("span");
               pill.className = "cert-pill";
               pill.textContent = cert;
-              certContainer.appendChild(pill);
+              plannedList.appendChild(pill);
             });
+
+            plannedGroup.appendChild(plannedList);
+            certContainer.appendChild(plannedGroup);
           }
         }
+
       })
       .catch(err => console.error("Error loading about data:", err));
   }

@@ -1234,17 +1234,35 @@ html, body {
 /* CERTIFICATIONS */
 .certifications {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.cert-pill {
-  border: 1px solid #38bdf8;
-  color: #38bdf8;
-  padding: 0.45rem 1.1rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  background: rgba(56, 189, 248, 0.05);
+.cert-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-group h4 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.cert-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cert-badge {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: #e0f0ff;
+  color: #0077cc;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid #0077cc;
 }
 
 

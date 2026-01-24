@@ -15,15 +15,15 @@
       "description": "Leading infrastructure automation, managing Kubernetes clusters, and implementing GitOps practices."
     },
     {
-      "title": "DevOps Engineer",
+      "title": "GIS Engineer",
       "company": "Cyient Ltd",
       "period": "2018 – 2021",
-      "description": "During my time at Cyient, I worked on large‑scale geospatial data projects that supported global navigation systems. My role involved executing automation scripts in Python and MySQL to process address and street data, ensuring accuracy and completeness. I contributed to improving geocoding precision, modernizing unnamed geometries, and enhancing routing by defining road hierarchies and grade separation codes. This experience gave me strong exposure to automation, scripting, and data validation — skills that later became foundational in my transition to DevOps engineering."
+      "description": "Contributed to large-scale geospatial automation using Python and MySQL — foundational experience that shaped my DevOps mindset."
     }
   ],
   "certifications": {
     "acquired": [
-      "None yet"
+     "AWS Educate: Completed foundational AWS Cloud and Cloud Operations badges"
     ],
     "planned": [
       "AWS Cloud Practitioner",
