@@ -12,6 +12,8 @@ app.use("/api/skills", require("./routes/skills"));
 app.use("/api/contact", require("./routes/contact"));
 app.use("/api/voting", require("./routes/voting"));
 app.use("/api/feedback", require("./routes/feedback"));
+app.use("/api/about", require("./routes/about"));
+
 
 
 // global error handler (future‑proof)
