@@ -1246,7 +1246,9 @@ html, body {
 .cert-group h4 {
   margin-bottom: 10px;
   font-size: 1rem;
-  color: #333;
+  color: #0077cc;
+  font-weight: 600;
+
 }
 
 .cert-list {
@@ -1255,7 +1257,7 @@ html, body {
   gap: 10px;
 }
 
-.cert-badge {
+.cert-pill{
   padding: 6px 14px;
   border-radius: 20px;
   background-color: #e0f0ff;
