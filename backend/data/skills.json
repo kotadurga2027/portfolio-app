@@ -4,13 +4,17 @@
       "id": "aws",
       "name": "AWS Cloud Services",
       "iconClass": "aws",
-      "tags": ["AWS EC2", "VPC", "IAM", "S3", "EKS", "ALB"]
+      "tags": ["AWS EC2", "VPC", "IAM", "S3", "EKS", "ALB"],
+      "mastered": true
+
     },
     {
       "id": "iac",
       "name": "Infrastructure as Code",
       "iconClass": "iac",
-      "tags": ["Terraform", "Ansible"]
+      "tags": ["Terraform", "Ansible"],
+      "mastered": true
+
     },
     {
       "id": "cicd",
@@ -22,7 +26,9 @@
       "id": "k8s",
       "name": "Containers & Orchestration",
       "iconClass": "k8s",
-      "tags": ["Docker", "Kubernetes"]
+      "tags": ["Docker", "Kubernetes"],
+      "mastered": true
+
     },
     {
       "id": "monitor",

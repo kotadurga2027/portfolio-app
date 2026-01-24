@@ -14,14 +14,23 @@ router.get("/", (req, res) => {
 });
 
 /* =========================
-   VISITOR COUNT (PERSISTENT)
+   VISITOR COUNT (UNIQUE)
 ========================= */
 router.post("/visit", (req, res) => {
+  const { fingerprint } = req.body;   // frontend will send this
   const data = JSON.parse(fs.readFileSync(dataPath));
 
-  data.visitors += 1;
+  if (!data.fingerprints) {
+    data.fingerprints = [];
+  }
 
-  fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+  // Only increment if fingerprint is new
+  if (fingerprint && !data.fingerprints.includes(fingerprint)) {
+    data.visitors += 1;
+    data.fingerprints.push(fingerprint);
+    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
+  }
+
   res.json({ visitors: data.visitors });
 });
 

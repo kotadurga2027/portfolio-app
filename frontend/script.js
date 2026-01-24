@@ -20,36 +20,48 @@ if (hamburger && navLinks) {
   });
 }
 
-/*************************
- * PAGE LOAD LOGIC
- *************************/
+/***********************
+ * 1. VISITOR COUNT (UNIQUE) + TECHNOLOGIES COUNT
+***********************/
 document.addEventListener("DOMContentLoaded", () => {
+  const visitedKey = "portfolio_fingerprint";
 
-  /***********************
-   * 1. VISITOR COUNT
-   ***********************/
-const visitedKey = "portfolio_visited";
+  // Generate fingerprint
+  const fingerprint = btoa(
+    navigator.userAgent + screen.width + screen.height
+  );
 
-if (!localStorage.getItem(visitedKey)) {
-  // increment once
-  fetch("https://portfolio-backend-bf4r.onrender.com/api/stats/visit", { method: "POST" })
-    .then(res => res.json())
-    .then(data => {
-      const el = document.getElementById("visitorCount");
-      if (el) el.innerText = data.visitors + "+";
-      localStorage.setItem(visitedKey, "true");
-    });
-} else {
-  // just read current count
-  fetch("https://portfolio-backend-bf4r.onrender.com/api/stats")
-    .then(res => res.json())
-    .then(data => {
-      const el = document.getElementById("visitorCount");
-      if (el) el.innerText = data.visitors + "+";
-    });
-}
+  // Handle visitors
+  if (!localStorage.getItem(visitedKey)) {
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/stats/visit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fingerprint })
+    })
+      .then(res => res.json())
+      .then(data => {
+        const visitorEl = document.getElementById("visitorCount");
+        if (visitorEl) visitorEl.innerText = data.visitors + "+";
+        localStorage.setItem(visitedKey, fingerprint);
+      })
+      .catch(err => console.error("Visitor count error:", err));
+  } else {
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/stats")
+      .then(res => res.json())
+      .then(data => {
+        const visitorEl = document.getElementById("visitorCount");
+        if (visitorEl) visitorEl.innerText = data.visitors + "+";
 
+        const techEl = document.getElementById("technologiesCount");
+        if (techEl) techEl.innerText = data.technologies + "+";
+      })
+      .catch(err => console.error("Stats fetch error:", err));
+  }
 });
+
+
+
+
 
 /*************************************************************************************************/
 /* dynamically building website */
@@ -486,4 +498,86 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("❌ Error submitting feedback.");
       });
   });
+});
+
+/***********************
+ * ABOUT PAGE DYNAMIC DATA
+ ***********************/
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector(".about-section")) {
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/about")
+      .then(res => res.json())
+      .then(data => {
+        /* =========================
+           INTRO SECTION
+        ========================= */
+        const introContainer = document.querySelector(".about-content");
+        const introImage = document.querySelector(".about-image img");
+
+        if (data.intro) {
+          introContainer.querySelector("h3").textContent = data.intro.name;
+          introImage.src = data.intro.image;
+
+          const paragraphs = introContainer.querySelectorAll("p");
+          paragraphs.forEach((p, i) => {
+            if (data.intro.paragraphs[i]) p.textContent = data.intro.paragraphs[i];
+          });
+        }
+
+        /* =========================
+           EXPERIENCE SECTION
+        ========================= */
+        const expList = document.querySelector(".experience-list");
+        if (expList && data.experience) {
+          expList.innerHTML = "";
+          data.experience.forEach((exp, idx) => {
+            const card = document.createElement("div");
+            card.className = "experience-card" + (idx === 0 ? " active" : "");
+            card.innerHTML = `
+              <h4>${exp.title}</h4>
+              <span class="experience-meta">${exp.company} • ${exp.period}</span>
+              <p>${exp.description}</p>
+            `;
+            expList.appendChild(card);
+          });
+        }
+
+        /* =========================
+           CERTIFICATIONS SECTION
+        ========================= */
+        const certContainer = document.querySelector(".certifications");
+        if (certContainer && data.certifications) {
+          certContainer.innerHTML = "";
+
+          // Acquired
+          if (data.certifications.acquired?.length) {
+            const acquiredTitle = document.createElement("h4");
+            acquiredTitle.textContent = "Acquired Certifications";
+            certContainer.appendChild(acquiredTitle);
+
+            data.certifications.acquired.forEach(cert => {
+              const pill = document.createElement("span");
+              pill.className = "cert-pill";
+              pill.textContent = cert;
+              certContainer.appendChild(pill);
+            });
+          }
+
+          // Planned
+          if (data.certifications.planned?.length) {
+            const plannedTitle = document.createElement("h4");
+            plannedTitle.textContent = "Planned Certifications";
+            certContainer.appendChild(plannedTitle);
+
+            data.certifications.planned.forEach(cert => {
+              const pill = document.createElement("span");
+              pill.className = "cert-pill";
+              pill.textContent = cert;
+              certContainer.appendChild(pill);
+            });
+          }
+        }
+      })
+      .catch(err => console.error("Error loading about data:", err));
+  }
 });

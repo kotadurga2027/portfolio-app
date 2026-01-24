@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const router = express.Router();
-const dataPath = path.join(__dirname, "../data/stats.json");
+const dataPath = path.join(__dirname, "../data/endrosements.json");
 
 /* =========================
    SUBMIT ENDORSEMENT

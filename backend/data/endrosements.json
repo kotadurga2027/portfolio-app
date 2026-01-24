@@ -1,0 +1,22 @@
+{
+  "endorsementsList": [
+    {
+      "id": "1769057265700",
+      "name": "Neeraj",
+      "role": "Devops Engineer",
+      "message": "I wholeheartedly endorse Kotadurga as a highly skilled and reliable DevOps Engineer. With hands-on expertise in Terraform, AWS, Jenkins, Kubernetes, Docker, and Ansible, he consistently demonstrates the ability to automate and optimize enterprise-scale cloud environments. His work in CI/CD pipeline design, containerization, and cloud infrastructure automation has directly improved reliability, scalability, and delivery speed in complex telecom and enterprise systems.",
+      "date": "2026-01-22T04:47:45.700Z",
+      "status": "approved",
+      "likes": 2
+    },
+    {
+      "id": "1769058042768",
+      "name": "Mahesh",
+      "role": "System Engineer",
+      "message": "Kotadurga is a skilled DevOps Engineer who excels in automating cloud infrastructure and CI/CD pipelines.His expertise in Kubernetes, Docker, and Terraform ensures scalable, reliable deployments across enterprise systems.A proactive problem-solver, he consistently drives efficiency, resilience, and long-term improvements in every project.",
+      "date": "2026-01-22T05:00:42.768Z",
+      "status": "approved",
+      "likes": 2
+    }
+  ]
+}

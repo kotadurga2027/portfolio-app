@@ -1,0 +1,34 @@
+{
+  "intro": {
+    "name": "Kota Durga",
+    "image": "assets/images/profile.jpeg",
+    "paragraphs": [
+      "I'm a DevOps Engineer with 6+ years of experience in building and maintaining scalable cloud infrastructure.",
+      "My passion lies in automating everything — from CI/CD pipelines to infrastructure provisioning — ensuring systems are reliable, secure, and cost-effective."
+    ]
+  },
+  "experience": [
+    {
+      "title": "Senior DevOps Engineer",
+      "company": "Tata Consultancy Services | Ericsson",
+      "period": "2021 – Present",
+      "description": "Leading infrastructure automation, managing Kubernetes clusters, and implementing GitOps practices."
+    },
+    {
+      "title": "DevOps Engineer",
+      "company": "Cyient Ltd",
+      "period": "2018 – 2021",
+      "description": "During my time at Cyient, I worked on large‑scale geospatial data projects that supported global navigation systems. My role involved executing automation scripts in Python and MySQL to process address and street data, ensuring accuracy and completeness. I contributed to improving geocoding precision, modernizing unnamed geometries, and enhancing routing by defining road hierarchies and grade separation codes. This experience gave me strong exposure to automation, scripting, and data validation — skills that later became foundational in my transition to DevOps engineering."
+    }
+  ],
+  "certifications": {
+    "acquired": [
+      "None yet"
+    ],
+    "planned": [
+      "AWS Cloud Practitioner",
+      "CKA - Kubernetes",
+      "Terraform Associate"
+    ]
+  }
+}
