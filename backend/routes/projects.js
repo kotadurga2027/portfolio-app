@@ -1,5 +1,5 @@
 const express = require("express");
-const Project = require("../models/project");   // import mongoose model
+const Project = require("../models/projects");   // import mongoose model
 const router = express.Router();
 
 /* =========================

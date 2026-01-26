@@ -1,5 +1,5 @@
 const express = require("express");
-const Skill = require("../models/skill");   // import mongoose model
+const Skill = require("../models/skills");   // import mongoose model
 const router = express.Router();
 
 /* =========================
