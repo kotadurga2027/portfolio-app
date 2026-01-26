@@ -1,5 +1,5 @@
 const express = require("express");
-const Voting = require("../models/voting");   // import mongoose model
+const Voting = require("../models/voting");
 const router = express.Router();
 
 /* =========================
@@ -7,14 +7,18 @@ const router = express.Router();
 ========================= */
 router.get("/", async (req, res) => {
   try {
-    const votingSkills = await Voting.find();
-    const totalVotes = votingSkills.reduce((sum, s) => sum + (s.votes || 0), 0);
+    const votingDoc = await Voting.findOne(); // single document
+    if (!votingDoc || !votingDoc.votingSkills) {
+      return res.status(404).json({ error: "No voting data found" });
+    }
 
-    const skillsWithPercent = votingSkills.map(s => ({
-      _id: s._id,
-      option: s.option,
-      votes: s.votes,
-      percent: totalVotes > 0 ? Math.round((s.votes / totalVotes) * 100) : 0
+    const totalVotes = votingDoc.votingSkills.reduce((sum, s) => sum + (s.votes || 0), 0);
+
+    const skillsWithPercent = votingDoc.votingSkills.map(skill => ({
+      id: skill.id,
+      name: skill.name,
+      votes: skill.votes,
+      percent: totalVotes > 0 ? Math.round((skill.votes / totalVotes) * 100) : 0
     }));
 
     res.json(skillsWithPercent);
@@ -25,21 +29,26 @@ router.get("/", async (req, res) => {
 });
 
 /* =========================
-   POST vote for a skill
+   POST vote for a skill by id
 ========================= */
 router.post("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const skill = await Voting.findById(id);
+    const votingDoc = await Voting.findOne();
 
+    if (!votingDoc) {
+      return res.status(404).json({ success: false, error: "Voting document not found" });
+    }
+
+    const skill = votingDoc.votingSkills.find(s => s.id === id);
     if (!skill) {
       return res.status(404).json({ success: false, error: "Skill not found" });
     }
 
-    skill.votes = (skill.votes || 0) + 1;
-    await skill.save();
+    skill.votes += 1;
+    await votingDoc.save();
 
-    res.json({ success: true, votes: skill.votes });
+    res.json({ success: true, id: skill.id, votes: skill.votes });
   } catch (err) {
     console.error("Error voting for skill:", err);
     res.status(500).json({ success: false, error: "Failed to vote for skill" });
