@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 const app = express();
 app.use(cors());
-app.use(express.json());   // parse JSON bodies safely
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+// Routes
 app.use("/api/stats", require("./routes/stats"));
 app.use("/api/endorsements", require("./routes/endorsements"));
 app.use("/api/projects", require("./routes/projects"));
@@ -16,26 +17,23 @@ app.use("/api/voting", require("./routes/voting"));
 app.use("/api/feedback", require("./routes/feedback"));
 app.use("/api/about", require("./routes/about"));
 
-
-
-// global error handler (future‑proof)
+// Global error handler
 app.use((err, req, res, next) => {
   console.error("Server error:", err);
   res.status(500).json({ error: "Internal server error" });
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
-});
 
-
-
-const mongoose = require("mongoose");
-
-mongoose.connect(process.env.MONGO_URI, {
-  dbName: "portfolio"   // keep this if you want to force DB name
-})
-.then(() => console.log("✅ MongoDB connected"))
-.catch(err => console.error("❌ MongoDB connection error:", err));
-
+// ✅ Connect to MongoDB first, then start server
+mongoose.connect(process.env.MONGO_URI, { dbName: "portfolio" })
+  .then(() => {
+    console.log("✅ MongoDB connected");
+    app.listen(PORT, () => {
+      console.log(`Backend running on port ${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error("❌ MongoDB connection error:", err);
+    process.exit(1); // stop server if DB fails
+  });
