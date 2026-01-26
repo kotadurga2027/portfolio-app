@@ -3,12 +3,15 @@ const Stat = require("../models/stats");   // import mongoose model
 const router = express.Router();
 
 /* =========================
-   GET ALL STATS
+   GET STATS (single object)
 ========================= */
 router.get("/", async (req, res) => {
   try {
-    const stats = await Stat.find();
-    res.json(stats);
+    const stats = await Stat.findOne({ page: "global" }); // ✅ single document
+    if (!stats) {
+      return res.status(404).json({ error: "No stats found" });
+    }
+    res.json(stats); // ✅ send object directly
   } catch (err) {
     console.error("Error fetching stats:", err);
     res.status(500).json({ error: "Failed to load stats" });
@@ -22,9 +25,10 @@ router.post("/visit", async (req, res) => {
   const { fingerprint } = req.body;
 
   try {
-    // Find the global stats document (you can also scope by page if needed)
+    // Find the global stats document
     let stat = await Stat.findOne({ page: "global" });
 
+    // If not found, create it
     if (!stat) {
       stat = new Stat({ page: "global", visitors: 0, fingerprints: [] });
     }
@@ -32,7 +36,7 @@ router.post("/visit", async (req, res) => {
     // Only increment if fingerprint is new
     if (fingerprint && (!stat.fingerprints || !stat.fingerprints.includes(fingerprint))) {
       stat.visitors = (stat.visitors || 0) + 1;
-      stat.fingerprints = [...(stat.fingerprints || []), fingerprint];
+      stat.fingerprints.push(fingerprint);
       await stat.save();
     }
 
