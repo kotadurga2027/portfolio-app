@@ -1,21 +1,23 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+const mongoose = require("mongoose");
 
-const router = express.Router();
-const dataPath = path.join(__dirname, "../data/about.json");
-
-/* =========================
-   GET ABOUT DATA
-========================= */
-router.get("/", (req, res) => {
-  try {
-    const data = JSON.parse(fs.readFileSync(dataPath));
-    res.json(data);
-  } catch (err) {
-    console.error("Error reading about.json:", err);
-    res.status(500).json({ error: "Failed to load about data" });
+const aboutSchema = new mongoose.Schema({
+  intro: {
+    name: { type: String, required: true },
+    image: { type: String },          // URL to profile image
+    paragraphs: [{ type: String }]    // multiple intro paragraphs
+  },
+  experience: [
+    {
+      title: { type: String, required: true },
+      company: { type: String },
+      period: { type: String },       // e.g. "2020–2024"
+      description: { type: String }
+    }
+  ],
+  certifications: {
+    acquired: [{ type: String }],     // list of completed certs
+    planned: [{ type: String }]       // list of upcoming certs
   }
-});
+}, { timestamps: true });
 
-module.exports = router;
+module.exports = mongoose.model("About", aboutSchema);
