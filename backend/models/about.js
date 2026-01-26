@@ -20,4 +20,5 @@ const aboutSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = mongoose.model("about", aboutSchema);
+module.exports = mongoose.model("About", aboutSchema, "about");
+

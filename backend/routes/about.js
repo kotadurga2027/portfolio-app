@@ -7,7 +7,7 @@ const router = express.Router();
 ========================= */
 router.get("/", async (req, res) => {
   try {
-    const aboutData = await about.find(); // returns array
+    const aboutData = await About.find(); // returns array
     if (!aboutData || aboutData.length === 0) {
       return res.status(404).json({ error: "No about data found" });
     }
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 ========================= */
 router.put("/", async (req, res) => {
   try {
-    const updated = await about.findOneAndUpdate({}, req.body, { new: true, upsert: true });
+    const updated = await About.findOneAndUpdate({}, req.body, { new: true, upsert: true });
     res.json(updated);
   } catch (err) {
     console.error("Error updating about data:", err);
