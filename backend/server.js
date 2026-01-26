@@ -29,13 +29,13 @@ app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
 
+
+
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: "portfolio"   // make sure this matches your Atlas DB name
+  dbName: "portfolio"   // keep this if you want to force DB name
 })
-.then(() => console.log("MongoDB connected"))
-.catch(err => console.error("MongoDB connection error:", err));
+.then(() => console.log("✅ MongoDB connected"))
+.catch(err => console.error("❌ MongoDB connection error:", err));
 
