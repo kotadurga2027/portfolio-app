@@ -1,5 +1,4 @@
-{
-  "skillsList": [
+[
     {
       "id": "aws",
       "name": "AWS Cloud Services",
@@ -42,5 +41,4 @@
       "iconClass": "os",
       "tags": ["Linux (RHEL)", "Bash", "Python", "boto3"]
     }
-  ]
-}
+]

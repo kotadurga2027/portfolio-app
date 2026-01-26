@@ -1,20 +1,33 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
+const About = require("../models/about");   // import mongoose model
 const router = express.Router();
-const dataPath = path.join(__dirname, "../data/about.json");
 
 /* =========================
    GET ABOUT DATA
 ========================= */
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const data = JSON.parse(fs.readFileSync(dataPath));
-    res.json(data);
+    const aboutData = await About.findOne();   // fetch first document
+    if (!aboutData) {
+      return res.status(404).json({ error: "No about data found" });
+    }
+    res.json(aboutData);
   } catch (err) {
-    console.error("Error reading about.json:", err);
+    console.error("Error fetching about data:", err);
     res.status(500).json({ error: "Failed to load about data" });
+  }
+});
+
+/* =========================
+   UPDATE ABOUT DATA
+========================= */
+router.put("/", async (req, res) => {
+  try {
+    const updated = await About.findOneAndUpdate({}, req.body, { new: true, upsert: true });
+    res.json(updated);
+  } catch (err) {
+    console.error("Error updating about data:", err);
+    res.status(500).json({ error: "Failed to update about data" });
   }
 });
 

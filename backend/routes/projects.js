@@ -1,48 +1,39 @@
-// routes/projects.js
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
+const Project = require("../models/project");   // import mongoose model
 const router = express.Router();
-const dataPath = path.join(__dirname, "../data/projects.json");
 
-// helper: read JSON safely
-function readProjects() {
+/* =========================
+   GET /api/projects → return all projects
+========================= */
+router.get("/", async (req, res) => {
   try {
-    const raw = fs.readFileSync(dataPath);
-    return JSON.parse(raw);
+    const projects = await Project.find().sort({ date: -1 });
+    res.json(projects);
   } catch (err) {
-    console.error("Error reading projects.json:", err);
-    return { projectsList: [] };
+    console.error("Error fetching projects:", err);
+    res.status(500).json({ error: "Failed to load projects" });
   }
-}
-// helper: write JSON safely
-function writeProjects(data) {
-  try {
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-  } catch (err) {
-    console.error("Error writing projects.json:", err);
-  }
-}
-
-// GET /api/projects → return all projects
-router.get("/", (req, res) => {
-  const data = readProjects();
-  res.json(data.projectsList || []);
 });
-// POST /api/projects/:id/like → increment likes for a project
-router.post("/:id/like", (req, res) => {
-  const data = readProjects();
-  const project = data.projectsList.find(p => p.id === req.params.id);
 
-  if (!project) {
-    return res.status(404).json({ success: false, error: "Project not found" });
+/* =========================
+   POST /api/projects/:id/like → increment likes for a project
+========================= */
+router.post("/:id/like", async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+
+    if (!project) {
+      return res.status(404).json({ success: false, error: "Project not found" });
+    }
+
+    project.likes = (project.likes || 0) + 1;
+    await project.save();
+
+    res.json({ success: true, likes: project.likes });
+  } catch (err) {
+    console.error("Error liking project:", err);
+    res.status(500).json({ success: false, error: "Failed to like project" });
   }
-
-  project.likes = (project.likes || 0) + 1;
-  writeProjects(data);
-
-  res.json({ success: true, likes: project.likes });
 });
 
 module.exports = router;

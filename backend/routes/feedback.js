@@ -1,44 +1,45 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
+const Feedback = require("../models/feedback");   // import mongoose model
 const router = express.Router();
 
-const filePath = path.join(__dirname, "../data/feedback.json");
-
-// Helpers
-function readFeedback() {
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
-}
-function writeFeedback(data) {
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-}
-
-// POST /api/feedback → Save new feedback
-router.post("/", (req, res) => {
+/* =========================
+   POST /api/feedback → Save new feedback
+========================= */
+router.post("/", async (req, res) => {
   const { rating, comment } = req.body;
-  
-  if (!rating || typeof rating !== "string") {
+
+  // Validation
+  if (!rating) {
     return res.status(400).json({ success: false, error: "Rating is required" });
   }
 
-  const data = readFeedback();
-  const entry = {
-    rating,
-    comment: comment || "",
-    timestamp: new Date().toISOString()
-  };
-  console.log("Received feedback:", req.body);
+  try {
+    const entry = new Feedback({
+      rating,
+      feedback: comment || ""
+    });
 
-  data.feedback.push(entry);
-  writeFeedback(data);
+    await entry.save();
+    console.log("Received feedback:", req.body);
 
-  res.json({ success: true });
+    res.json({ success: true, feedback: entry });
+  } catch (err) {
+    console.error("Error saving feedback:", err);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
 });
 
-// GET /api/feedback → Optional: view all feedback
-router.get("/", (req, res) => {
-  const data = readFeedback();
-  res.json(data.feedback);
+/* =========================
+   GET /api/feedback → View all feedback
+========================= */
+router.get("/", async (req, res) => {
+  try {
+    const feedbacks = await Feedback.find().sort({ date: -1 });
+    res.json(feedbacks);
+  } catch (err) {
+    console.error("Error fetching feedback:", err);
+    res.status(500).json({ error: "Failed to load feedback" });
+  }
 });
 
 module.exports = router;

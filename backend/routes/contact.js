@@ -1,33 +1,11 @@
-// routes/contact.js
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
+const Contact = require("../models/contact");   // import mongoose model
 const router = express.Router();
-const dataPath = path.join(__dirname, "../data/contact.json");
 
-// helper: read messages
-function readMessages() {
-  try {
-    const raw = fs.readFileSync(dataPath);
-    return JSON.parse(raw);
-  } catch (err) {
-    console.error("Error reading contact.json:", err);
-    return { messages: [] };
-  }
-}
-
-// helper: write messages
-function writeMessages(data) {
-  try {
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-  } catch (err) {
-    console.error("Error writing contact.json:", err);
-  }
-}
-
-// POST /api/contact → save message
-router.post("/", (req, res) => {
+/* =========================
+   POST /api/contact → save message
+========================= */
+router.post("/", async (req, res) => {
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
@@ -39,16 +17,27 @@ router.post("/", (req, res) => {
     return res.status(400).json({ error: "Invalid email format." });
   }
 
-  const data = readMessages();
-  data.messages.push({
-    name,
-    email,
-    message,
-    date: new Date().toISOString()
-  });
+  try {
+    const contact = new Contact({ name, email, message });
+    await contact.save();
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Error saving contact:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
-  writeMessages(data);
-  res.json({ success: true });
+/* =========================
+   GET /api/contact → fetch all messages
+========================= */
+router.get("/", async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ date: -1 }); // newest first
+    res.json(contacts);
+  } catch (err) {
+    console.error("Error fetching contacts:", err);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 module.exports = router;

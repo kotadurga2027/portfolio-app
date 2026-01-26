@@ -1,5 +1,4 @@
-{
-  "projectsList": [
+[
     {
       "id": "infra-health-monitor",
       "title": "infra-health-monitor",
@@ -18,5 +17,4 @@
       "featured": true,
       "likes": 15
     }
-  ]
-}
+]

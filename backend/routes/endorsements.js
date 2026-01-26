@@ -1,14 +1,11 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
-
+const Endorsement = require("../models/endorsement");  // import mongoose model
 const router = express.Router();
-const dataPath = path.join(__dirname, "../data/endrosements.json");
 
 /* =========================
    SUBMIT ENDORSEMENT
 ========================= */
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, role, message } = req.body;
 
@@ -23,26 +20,14 @@ router.post("/", (req, res) => {
       return res.status(400).json({ error: "Message too long" });
     }
 
-    const data = JSON.parse(fs.readFileSync(dataPath));
-
-    // Ensure endorsementsList exists
-    if (!data.endorsementsList) {
-      data.endorsementsList = [];
-    }
-
-    const newEndorsement = {
-      id: Date.now().toString(),   // unique id
+    const newEndorsement = new Endorsement({
       name: name.trim(),
       role: role ? role.trim() : "",
       message: message.trim(),
-      date: new Date().toISOString(),
-      status: "approved"           // future: moderation
-    };
+      status: "approved"
+    });
 
-    data.endorsementsList.push(newEndorsement);
-
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-
+    await newEndorsement.save();
     res.json({ success: true, endorsement: newEndorsement });
   } catch (err) {
     console.error("Endorse error:", err);
@@ -53,33 +38,31 @@ router.post("/", (req, res) => {
 /* =========================
    GET ENDORSEMENTS
 ========================= */
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const data = JSON.parse(fs.readFileSync(dataPath));
-    res.json(data.endorsementsList || []);
+    const endorsements = await Endorsement.find().sort({ date: -1 });
+    res.json(endorsements);
   } catch (err) {
     console.error("Fetch endorsements error:", err);
     res.status(500).json({ error: "Failed to load endorsements" });
   }
 });
 
-/* LIKE AN ENDORSEMENT */
-router.post("/:id/like", (req, res) => {
+/* =========================
+   LIKE AN ENDORSEMENT
+========================= */
+router.post("/:id/like", async (req, res) => {
   try {
     const { id } = req.params;
-    const data = JSON.parse(fs.readFileSync(dataPath));
+    const endorsement = await Endorsement.findById(id);
 
-    const endorsement = data.endorsementsList.find(e => e.id === id);
     if (!endorsement) {
       return res.status(404).json({ error: "Endorsement not found" });
     }
 
-    // Initialize likes if not present
-    if (!endorsement.likes) endorsement.likes = 0;
+    endorsement.likes = (endorsement.likes || 0) + 1;
+    await endorsement.save();
 
-    endorsement.likes += 1;
-
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
     res.json({ success: true, likes: endorsement.likes });
   } catch (err) {
     console.error("Like error:", err);
