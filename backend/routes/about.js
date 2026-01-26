@@ -7,16 +7,17 @@ const router = express.Router();
 ========================= */
 router.get("/", async (req, res) => {
   try {
-    const aboutData = await About.findOne();   // fetch first document
-    if (!aboutData) {
+    const aboutData = await About.find(); // returns array
+    if (!aboutData || aboutData.length === 0) {
       return res.status(404).json({ error: "No about data found" });
     }
-    res.json(aboutData);
+    res.json(aboutData[0]); // send first document
   } catch (err) {
     console.error("Error fetching about data:", err);
     res.status(500).json({ error: "Failed to load about data" });
   }
 });
+
 
 /* =========================
    UPDATE ABOUT DATA
