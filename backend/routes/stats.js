@@ -1,5 +1,5 @@
 const express = require("express");
-const Stat = require("../models/stat");   // import mongoose model
+const Stat = require("../models/stats");   // import mongoose model
 const router = express.Router();
 
 /* =========================
