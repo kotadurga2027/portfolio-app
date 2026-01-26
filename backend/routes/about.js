@@ -1,34 +1,53 @@
 const express = require("express");
-const About = require("../models/about");   // import mongoose model
+const Voting = require("../models/voting"); // uses "votings" collection
 const router = express.Router();
 
 /* =========================
-   GET ABOUT DATA
+   GET all voting skills with percentages
 ========================= */
 router.get("/", async (req, res) => {
   try {
-    const aboutData = await About.find(); // returns array
-    if (!aboutData || aboutData.length === 0) {
-      return res.status(404).json({ error: "No about data found" });
+    const votingDoc = await Voting.findOne(); // single document
+    if (!votingDoc || !votingDoc.votingSkills) {
+      return res.status(404).json({ error: "No voting data found" });
     }
-    res.json(aboutData[0]); // send first document
+
+    const totalVotes = votingDoc.votingSkills.reduce((sum, s) => sum + (s.votes || 0), 0);
+
+    const skillsWithPercent = votingDoc.votingSkills.map((s, i) => ({
+      _id: i, // use index as ID for frontend
+      name: s.name,
+      votes: s.votes,
+      percent: totalVotes > 0 ? Math.round((s.votes / totalVotes) * 100) : 0
+    }));
+
+    res.json(skillsWithPercent);
   } catch (err) {
-    console.error("Error fetching about data:", err);
-    res.status(500).json({ error: "Failed to load about data" });
+    console.error("Error fetching voting skills:", err);
+    res.status(500).json({ error: "Failed to load voting skills" });
   }
 });
 
-
 /* =========================
-   UPDATE ABOUT DATA
+   POST vote for a skill by index
 ========================= */
-router.put("/", async (req, res) => {
+router.post("/:id", async (req, res) => {
   try {
-    const updated = await About.findOneAndUpdate({}, req.body, { new: true, upsert: true });
-    res.json(updated);
+    const { id } = req.params;
+    const index = parseInt(id);
+
+    const votingDoc = await Voting.findOne();
+    if (!votingDoc || !votingDoc.votingSkills || !votingDoc.votingSkills[index]) {
+      return res.status(404).json({ success: false, error: "Skill not found" });
+    }
+
+    votingDoc.votingSkills[index].votes += 1;
+    await votingDoc.save();
+
+    res.json({ success: true, votes: votingDoc.votingSkills[index].votes });
   } catch (err) {
-    console.error("Error updating about data:", err);
-    res.status(500).json({ error: "Failed to update about data" });
+    console.error("Error voting for skill:", err);
+    res.status(500).json({ success: false, error: "Failed to vote for skill" });
   }
 });
 

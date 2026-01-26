@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
 
 const votingSchema = new mongoose.Schema({
-  option: { type: String, required: true },   // e.g. "React", "Node.js"
-  votes: { type: Number, default: 0 },
-  createdAt: { type: Date, default: Date.now }
-});
+  votingSkills: [
+    {
+      name: { type: String, required: true },
+      votes: { type: Number, default: 0 },
+      percent: { type: Number, default: 0 }
+    }
+  ]
+}, { timestamps: true });
 
-module.exports = mongoose.model("Voting", votingSchema);
+// ✅ Force Mongoose to use "votings" collection
+module.exports = mongoose.model("Voting", votingSchema, "votings");
