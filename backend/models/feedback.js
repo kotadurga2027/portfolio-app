@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
 const feedbackSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  feedback: { type: String, required: true },
-  rating: { type: Number, min: 1, max: 5 },   // optional rating system
+  rating: {
+    type: String,
+    enum: ["Needs Work", "Okay", "Good", "Great", "Amazing"], // match frontend labels
+    required: true
+  },
+  feedback: { type: String, default: "" }, // optional comment
   date: { type: Date, default: Date.now }
 });
 

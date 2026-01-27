@@ -1,5 +1,5 @@
 const express = require("express");
-const Feedback = require("../models/feedback");   // import mongoose model
+const Feedback = require("../models/feedback");
 const router = express.Router();
 
 /* =========================
@@ -8,8 +8,7 @@ const router = express.Router();
 router.post("/", async (req, res) => {
   const { rating, comment } = req.body;
 
-  // Validation
-  if (!rating) {
+  if (!rating || typeof rating !== "string") {
     return res.status(400).json({ success: false, error: "Rating is required" });
   }
 
@@ -20,7 +19,7 @@ router.post("/", async (req, res) => {
     });
 
     await entry.save();
-    console.log("Received feedback:", req.body);
+    console.log("Received feedback:", entry);
 
     res.json({ success: true, feedback: entry });
   } catch (err) {

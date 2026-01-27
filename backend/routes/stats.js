@@ -7,7 +7,7 @@ const router = express.Router();
 ========================= */
 router.get("/", async (req, res) => {
   try {
-    const stats = await Stat.findOne({ page: "global" }); // ✅ single document
+    const stats = await Stat.findOne(); // ✅ no filter, just grab first doc
     if (!stats) {
       return res.status(404).json({ error: "No stats found" });
     }
@@ -25,12 +25,12 @@ router.post("/visit", async (req, res) => {
   const { fingerprint } = req.body;
 
   try {
-    // Find the global stats document
-    let stat = await Stat.findOne({ page: "global" });
+    // Find the single stats document
+    let stat = await Stat.findOne();
 
     // If not found, create it
     if (!stat) {
-      stat = new Stat({ page: "global", visitors: 0, fingerprints: [] });
+      stat = new Stat({ visitors: 0, technologies: 0, fingerprints: [] });
     }
 
     // Only increment if fingerprint is new
