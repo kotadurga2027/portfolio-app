@@ -205,6 +205,10 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="like-count">${p.likes || 0}</span>
         </div>
       </div>
+      <div class="project-actions">
+      <a href="project-details.html?id=${p.id}" class="details-link">View Details →</a>
+      </div>
+
     `;
 
     // like button handler
@@ -598,5 +602,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
       })
       .catch(err => console.error("Error loading about data:", err));
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Run only on project-details.html
+  if (document.querySelector(".project-header")) {
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get("id");
+    if (!projectId) return;
+
+    fetch(`https://portfolio-backend-bf4r.onrender.com/api/project-details/${projectId}`)
+      .then(res => res.json())
+      .then(project => {
+        // Header
+        document.getElementById("title").textContent = project.title;
+        document.getElementById("tagline").textContent = project.tagline;
+        document.getElementById("repo").href = project.repo;
+        document.getElementById("demo").href = project.demo;
+        document.getElementById("date").textContent = project.date;
+        document.getElementById("category").textContent = project.category;
+
+        // Problem & Solution
+        document.getElementById("problem").textContent = project.problem;
+        document.getElementById("solution").textContent = project.solution;
+
+        // Impact & Metrics
+        document.getElementById("impact").textContent = project.impact;
+        const metricsList = document.getElementById("metrics");
+        metricsList.innerHTML = "";
+        if (project.metrics) {
+          Object.entries(project.metrics).forEach(([key, value]) => {
+            const li = document.createElement("li");
+            li.textContent = `${key}: ${value}`;
+            metricsList.appendChild(li);
+          });
+        }
+
+        // Tools
+        const toolsDiv = document.getElementById("tools");
+        toolsDiv.innerHTML = "";
+        if (project.tools) {
+          project.tools.forEach(tool => {
+            const span = document.createElement("span");
+            span.textContent = tool;
+            toolsDiv.appendChild(span);
+          });
+        }
+
+        // Diagram
+        if (project.diagram) {
+          document.getElementById("diagram").src = project.diagram;
+        }
+
+        // Screenshots
+        const screenshotsDiv = document.getElementById("screenshots");
+        screenshotsDiv.innerHTML = "";
+        if (project.screenshots) {
+          project.screenshots.forEach(src => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "Screenshot";
+            screenshotsDiv.appendChild(img);
+          });
+        }
+
+        // Challenges & Learnings
+        document.getElementById("challenges").textContent = project.challenges;
+        document.getElementById("learning").textContent = project.learning;
+
+        // Footer (Status + Tags)
+        document.getElementById("status").textContent = project.status;
+        const tagsDiv = document.getElementById("tags");
+        tagsDiv.innerHTML = "";
+        if (project.tags) {
+          project.tags.forEach(tag => {
+            const span = document.createElement("span");
+            span.textContent = tag;
+            tagsDiv.appendChild(span);
+          });
+        }
+
+        // SEO Meta
+        document.title = project.title + " | Project Details";
+        const metaDesc = document.createElement("meta");
+        metaDesc.name = "description";
+        metaDesc.content = project.tagline || project.description;
+        document.head.appendChild(metaDesc);
+      })
+      .catch(err => console.error("Error loading project details:", err));
   }
 });

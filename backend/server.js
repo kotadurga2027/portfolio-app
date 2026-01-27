@@ -16,6 +16,8 @@ app.use("/api/contact", require("./routes/contact"));
 app.use("/api/voting", require("./routes/voting"));
 app.use("/api/feedback", require("./routes/feedback"));
 app.use("/api/about", require("./routes/about"));
+app.use("/api/project-details", require("./routes/projectDetails"));
+
 
 // Global error handler
 app.use((err, req, res, next) => {

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "infra-health-monitor",
+    "title": "Infrastructure Health Monitor",
+    "tagline": "Python-based monitoring tool with automated checks and alerts",
+    "problem": "Needed visibility into system health and uptime for cloud infrastructure.",
+    "solution": "Built monitoring with Prometheus + Grafana, automated alerts via Slack integration.",
+    "impact": "Reduced MTTR by 40%, improved uptime to 99.9%.",
+    "tools": ["Python", "Prometheus", "Grafana", "Slack API"],
+    "diagram": "assets/images/infra-monitor-diagram.png",
+    "repo": "https://github.com/kotadurga2027/infra-health-monitor",
+    "demo": "https://infra-monitor-demo.com",
+    "date": "2025-11",
+    "category": "Monitoring & Reliability",
+    "scale": "Multi-region AWS setup, 5 services monitored",
+    "challenges": "Alert fatigue and tuning thresholds for accuracy",
+    "learning": "Improved skills in observability and incident response",
+    "status": "active",
+    "metrics": {
+      "uptime": "99.9%",
+      "mttr": "40% reduction",
+      "alerts": "50+ automated alerts/month"
+    },
+    "screenshots": [
+      "assets/images/grafana-dashboard.png",
+      "assets/images/alert-config.png"
+    ],
+    "tags": ["monitoring", "cloud", "automation"]
+  },
+  {
+    "id": "eks-self-healing-cluster",
+    "title": "EKS Self-Healing Cluster",
+    "tagline": "Terraform-driven EKS cluster with self-healing and high availability",
+    "problem": "Manual recovery from node failures slowed down deployments and reduced reliability.",
+    "solution": "Provisioned EKS with Terraform, added auto-scaling groups and health checks for self-healing.",
+    "impact": "Cluster recovers automatically from node failures, reducing downtime by 70%.",
+    "tools": ["AWS", "Terraform", "Kubernetes", "EKS"],
+    "diagram": "assets/images/eks-cluster-diagram.png",
+    "repo": "https://github.com/kotadurga2027/eks-self-healing-cluster",
+    "demo": "https://eks-self-healing-demo.com",
+    "date": "2025-12",
+    "category": "Infrastructure Automation",
+    "scale": "Cluster with 10 nodes, auto-scaling enabled",
+    "challenges": "Terraform state management and Kubernetes node replacement logic",
+    "learning": "Deepened knowledge of IaC and Kubernetes resilience patterns",
+    "status": "active",
+    "metrics": {
+      "downtime": "70% reduction",
+      "nodes": "10 nodes managed",
+      "scaling": "Auto-scaling enabled"
+    },
+    "screenshots": [
+      "assets/images/eks-dashboard.png",
+      "assets/images/terraform-plan.png"
+    ],
+    "tags": ["aws", "terraform", "kubernetes", "automation"]
+  }
+]
