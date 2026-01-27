@@ -1455,30 +1455,22 @@ skills h1,
    Project Details Page Styles
    ========================= */
 
-/* General layout */
-body {
-  background: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-/* Header */
-.project-header {
+.project-details-page .project-header {
   background: #fff;
   border-bottom: 1px solid #ddd;
   padding: 30px 20px;
   text-align: center;
 }
-.project-header h1 {
+.project-details-page .project-header h1 {
   margin: 0;
   font-size: 2rem;
   color: #222;
 }
-.project-header p {
+.project-details-page .project-header p {
   margin: 8px 0;
   color: #555;
 }
-.project-links a {
+.project-details-page .project-links a {
   display: inline-block;
   margin: 8px;
   padding: 10px 16px;
@@ -1488,16 +1480,16 @@ body {
   border-radius: 4px;
   font-weight: 500;
 }
-.project-links a:hover {
+.project-details-page .project-links a:hover {
   background: #005a9e;
 }
-.project-header .meta {
+.project-details-page .project-header .meta {
   font-size: 0.9rem;
   color: #777;
 }
 
 /* Section headings */
-section h2 {
+.project-details-page section h2 {
   margin-top: 30px;
   font-size: 1.4rem;
   border-bottom: 2px solid #0078d7;
@@ -1506,13 +1498,13 @@ section h2 {
 }
 
 /* Problem & Solution */
-.project-details {
+.project-details-page .project-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 20px;
 }
-.project-details p {
+.project-details-page .project-details p {
   background: #fff;
   padding: 15px;
   border: 1px solid #ddd;
@@ -1520,14 +1512,14 @@ section h2 {
 }
 
 /* Impact & Metrics */
-.impact p {
+.project-details-page .impact p {
   margin-bottom: 15px;
 }
-.impact ul {
+.project-details-page .impact ul {
   list-style: none;
   padding: 0;
 }
-.impact ul li {
+.project-details-page .impact ul li {
   background: #fff;
   margin: 6px 0;
   padding: 12px;
@@ -1537,7 +1529,7 @@ section h2 {
 }
 
 /* Tools / Tech Stack */
-.tools div span {
+.project-details-page .tools div span {
   display: inline-block;
   background: #eee;
   padding: 6px 12px;
@@ -1548,7 +1540,7 @@ section h2 {
 }
 
 /* Visuals */
-.visuals img {
+.project-details-page .visuals img {
   max-width: 100%;
   margin: 12px 0;
   border: 1px solid #ddd;
@@ -1556,7 +1548,7 @@ section h2 {
 }
 
 /* Challenges & Learnings */
-.extras p {
+.project-details-page .extras p {
   background: #fff;
   padding: 15px;
   border: 1px solid #ddd;
@@ -1564,18 +1556,18 @@ section h2 {
 }
 
 /* Footer */
-.project-footer {
+.project-details-page .project-footer {
   background: #fff;
   border-top: 1px solid #ddd;
   margin-top: 40px;
   padding: 20px;
   text-align: center;
 }
-.project-footer p {
+.project-details-page .project-footer p {
   margin: 0 0 10px;
   font-weight: 500;
 }
-.project-footer div span {
+.project-details-page .project-footer div span {
   display: inline-block;
   background: #eee;
   padding: 6px 12px;
@@ -1587,20 +1579,21 @@ section h2 {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .project-details {
+  .project-details-page .project-details {
     grid-template-columns: 1fr;
   }
 }
 
-.project-actions {
+/* Project Actions */
+.project-details-page .project-actions {
   margin-top: 10px;
   text-align: right;
 }
-.details-link {
+.project-details-page .details-link {
   color: #0078d7;
   font-weight: 500;
   text-decoration: none;
 }
-.details-link:hover {
+.project-details-page .details-link:hover {
   text-decoration: underline;
 }
