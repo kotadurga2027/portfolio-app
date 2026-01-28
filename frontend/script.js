@@ -732,6 +732,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (project.problem) document.getElementById("problem").textContent = project.problem;
         if (project.solution) document.getElementById("solution").textContent = project.solution;
         if (project.impact) document.getElementById("impact").textContent = project.impact;
+        if (project.impact) document.getElementById("scale").textContent = project.impact;
         if (project.challenges) document.getElementById("challenges").textContent = project.challenges;
         if (project.learning) document.getElementById("learning").textContent = project.learning;
         if (project.date) document.getElementById("date").textContent = project.date;
@@ -745,8 +746,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (Array.isArray(project.tags)) {
           project.tags.forEach(tag => {
             const span = document.createElement("span");
-            span.textContent = tag;
-            span.className = "tag";
+            span.textContent = `#${tag}`;
+            span.className = "meta-tag";
             tagsContainer.appendChild(span);
           });
         }
@@ -758,9 +759,10 @@ document.addEventListener("DOMContentLoaded", () => {
           project.tools.forEach(tool => {
             const div = document.createElement("div");
             div.textContent = tool;
-            div.className = "tool";
+            div.className = "tech-tag";
             toolsContainer.appendChild(div);
           });
+
         }
 
         // Metrics
