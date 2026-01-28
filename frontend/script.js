@@ -507,6 +507,109 @@ document.addEventListener("DOMContentLoaded", () => {
 /***********************
  * ABOUT PAGE DYNAMIC DATA
  ***********************/
+
+/***********************
+ * ABOUT PAGE DYNAMIC DATA
+ ***********************/
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.querySelector(".about-section")) {
+    fetch("https://portfolio-backend-bf4r.onrender.com/api/about")
+      .then(res => res.json())
+      .then(data => {
+        /* =========================
+           INTRO SECTION
+        ========================= */
+        const introContainer = document.querySelector(".about-content");
+        const introImage = document.querySelector(".about-image img");
+
+        if (data.intro) {
+          introContainer.querySelector("h3").textContent = data.intro.name;
+          introImage.src = data.intro.image;
+
+          const paragraphs = introContainer.querySelectorAll("p");
+          paragraphs.forEach((p, i) => {
+            if (data.intro.paragraphs[i]) p.textContent = data.intro.paragraphs[i];
+          });
+        }
+
+        /* =========================
+           EXPERIENCE SECTION
+        ========================= */
+        const expList = document.querySelector(".experience-list");
+        if (expList && data.experience) {
+          expList.innerHTML = "";
+          data.experience.forEach((exp, idx) => {
+            const card = document.createElement("div");
+            card.className = "experience-card" + (idx === 0 ? " active" : "");
+            card.innerHTML = `
+              <h4>${exp.title}</h4>
+              <span class="experience-meta">${exp.company} • ${exp.period}</span>
+              <p>${exp.description}</p>
+            `;
+            expList.appendChild(card);
+          });
+        }
+
+        /* =========================
+           CERTIFICATIONS SECTION
+        ========================= */
+        const certContainer = document.querySelector(".certifications");
+        if (certContainer && data.certifications) {
+          certContainer.innerHTML = "";
+
+          // Acquired
+          if (data.certifications.acquired?.length) {
+            const acquiredGroup = document.createElement("div");
+            acquiredGroup.className = "cert-group";
+
+            const acquiredTitle = document.createElement("h4");
+            acquiredTitle.textContent = "Acquired Certifications";
+            acquiredGroup.appendChild(acquiredTitle);
+
+            const acquiredList = document.createElement("div");
+            acquiredList.className = "cert-list";
+
+            data.certifications.acquired.forEach(cert => {
+              const pill = document.createElement("span");
+              pill.className = "cert-pill";
+              pill.textContent = cert;
+              acquiredList.appendChild(pill);
+            });
+
+            acquiredGroup.appendChild(acquiredList);
+            certContainer.appendChild(acquiredGroup);
+          }
+
+          // Planned
+          if (data.certifications.planned?.length) {
+            const plannedGroup = document.createElement("div");
+            plannedGroup.className = "cert-group";
+
+            const plannedTitle = document.createElement("h4");
+            plannedTitle.textContent = "Planned Certifications";
+            plannedGroup.appendChild(plannedTitle);
+
+            const plannedList = document.createElement("div");
+            plannedList.className = "cert-list";
+
+            data.certifications.planned.forEach(cert => {
+              const pill = document.createElement("span");
+              pill.className = "cert-pill";
+              pill.textContent = cert;
+              plannedList.appendChild(pill);
+            });
+
+            plannedGroup.appendChild(plannedList);
+            certContainer.appendChild(plannedGroup);
+          }
+        }
+
+      })
+      .catch(err => console.error("Error loading about data:", err));
+  }
+});
+
+/*project details page */
 document.addEventListener("DOMContentLoaded", () => {
   if (document.querySelector(".about-section")) {
     fetch("https://portfolio-backend-bf4r.onrender.com/api/about")

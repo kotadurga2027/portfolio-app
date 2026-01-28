@@ -2,80 +2,129 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="page-title">Project Details</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Project Details | Kota Durga</title>
+  <meta name="description" content="Dynamic DevOps Portfolio Project">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Header -->
+  <header class="navbar">
+    <div class="nav-left">
+      <h3 class="logo">KD</h3>
+    </div>
+    <nav class="nav-center" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="endorsements.html">Endorsements</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <button class="hamburger" id="hamburger">☰</button>
+      <a href="assets/devops_engineer_kota_durga_resume.pdf" download class="btn blue small">
+        <i class="fas fa-download"></i> Download Resume
+      </a>
+    </div>
+  </header>
 
-  <!-- ✅ Wrapper starts here -->
-  <main class="project-details-page">
+  <!-- Main Content -->
+  <main>
+    <div class="container">
+      <div class="content-wrapper">
 
-    <!-- Header -->
-    <header class="project-header">
-      <h1 id="title"></h1>
-      <p id="tagline"></p>
-      <div class="project-links">
-        <a id="repo" target="_blank">GitHub Repo</a>
-        <a id="demo" target="_blank">Live Demo</a>
+        <!-- Back Link -->
+        <a href="projects.html" class="back-link">
+          <i class="fa-solid fa-arrow-left icon-back"></i> Back to Projects
+        </a>
+
+        <!-- Project Header -->
+        <div class="project-details-header">
+          <div class="badge-row">
+            <span id="category" class="badge badge-category">Category</span>
+            <span id="status" class="badge badge-active">Status</span>
+          </div>
+          <h1 id="title" class="project-title">Project Title</h1>
+          <p id="tagline" class="project-tagline">Project tagline goes here</p>
+          <div class="btn-group">
+            <a id="repo" href="#" class="btn btn-primary">View Repository</a>
+            <a id="demo" href="#" class="btn btn-outline">Live Demo</a>
+          </div>
+        </div>
+
+        <!-- Metrics -->
+        <ul id="metrics" class="metrics-grid"></ul>
+
+        <!-- Content Cards -->
+        <div class="cards-grid">
+          <div class="card">
+            <div class="project-details-card-header">
+              <h3 class="card-title"><i class="fa-solid fa-triangle-exclamation icon-problem"></i> The Problem</h3>
+            </div>
+            <div class="card-content"><p id="problem"></p></div>
+          </div>
+
+          <div class="card">
+            <div class="project-details-card-header">
+              <h3 class="card-title"><i class="fa-solid fa-lightbulb icon-solution"></i> The Solution</h3>
+            </div>
+            <div class="card-content"><p id="solution"></p></div>
+          </div>
+
+          <div class="card">
+            <div class="project-details-card-header">
+              <h3 class="card-title"><i class="fa-solid fa-chart-line icon-impact"></i> Impact</h3>
+            </div>
+            <div class="card-content"><p id="impact"></p></div>
+          </div>
+
+          <div class="card">
+            <div class="project-details-card-header">
+              <h3 class="card-title"><i class="fa-solid fa-circle-question icon-challenges"></i> Challenges</h3>
+            </div>
+            <div class="card-content"><p id="challenges"></p></div>
+          </div>
+
+          <div class="card">
+            <div class="project-details-card-header">
+              <h3 class="card-title"><i class="fa-solid fa-book-open icon-learning"></i> Key Learnings</h3>
+            </div>
+            <div class="card-content"><p id="learning"></p></div>
+          </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="card tech-stack-card">
+          <div class="project-details-card-header"><h3 class="card-title">Tech Stack</h3></div>
+          <div id="tools" class="card-content tech-tags"></div>
+        </div>
+
+        <!-- Meta Info -->
+        <div class="meta-info">
+          <div class="meta-date" id="date">Date</div>
+          <div id="tags" class="meta-tags"></div>
+        </div>
       </div>
-      <p class="meta"><span id="date"></span> | <span id="category"></span></p>
-    </header>
-
-    <!-- Problem & Solution -->
-    <section class="project-details">
-      <div class="problem">
-        <h2>Problem</h2>
-        <p id="problem"></p>
-      </div>
-      <div class="solution">
-        <h2>Solution</h2>
-        <p id="solution"></p>
-      </div>
-    </section>
-
-    <!-- Impact & Metrics -->
-    <section class="impact">
-      <h2>Impact</h2>
-      <p id="impact"></p>
-      <ul id="metrics"></ul>
-    </section>
-
-    <!-- Tools -->
-    <section class="tools">
-      <h2>Tech Stack</h2>
-      <div id="tools"></div>
-    </section>
-
-    <!-- Visuals -->
-    <section class="visuals">
-      <h2>Architecture Diagram</h2>
-      <img id="diagram" alt="Project Diagram">
-      
-      <h2>Screenshots</h2>
-      <div id="screenshots"></div>
-    </section>
-
-    <!-- Challenges & Learnings -->
-    <section class="extras">
-      <h2>Challenges</h2>
-      <p id="challenges"></p>
-      
-      <h2>Learnings</h2>
-      <p id="learning"></p>
-    </section>
-
-    <!-- Footer -->
-    <footer class="project-footer">
-      <p>Status: <span id="status"></span></p>
-      <div id="tags"></div>
-    </footer>
-
+    </div>
   </main>
-  <!-- ✅ Wrapper ends here -->
 
-  <!-- External JS -->
-<script src="script.js"></script>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-left">© 2026 Kota Durga · DevOps Portfolio</p>
+      <div class="footer-right">
+        <a href="assets/devops_engineer_kota_durga_resume.pdf" download>
+          <i class="fas fa-file-alt"></i> Resume
+        </a>
+        <a href="https://github.com/kotadurga2027" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/kotadurga2027" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:kotadurga.devops@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
