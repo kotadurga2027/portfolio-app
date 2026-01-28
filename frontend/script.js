@@ -467,6 +467,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Handle feedback submission
+  if (submitBtn && feedbackInput) {
   submitBtn.addEventListener("click", () => {
     // Check if feedback already submitted in this browser
     if (localStorage.getItem("feedbackSubmitted")) {
@@ -502,6 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("❌ Error submitting feedback.");
       });
   });
+  }
 });
 
 /***********************
