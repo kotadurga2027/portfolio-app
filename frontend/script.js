@@ -31,8 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     navigator.userAgent + screen.width + screen.height
   );
 
-  // Handle visitors
-  if (!localStorage.getItem(visitedKey)) {
+  const storedFingerprint = localStorage.getItem(visitedKey);
+
+  if (!storedFingerprint || storedFingerprint !== fingerprint) {
+    // First visit or changed fingerprint
     fetch("https://portfolio-backend-bf4r.onrender.com/api/stats/visit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -46,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch(err => console.error("Visitor count error:", err));
   } else {
+    // Already visited → just fetch stats
     fetch("https://portfolio-backend-bf4r.onrender.com/api/stats")
       .then(res => res.json())
       .then(data => {
@@ -711,8 +714,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /*project details */
+
 document.addEventListener("DOMContentLoaded", () => {
-  if (document.querySelector(".project-header")) {
+  if (document.querySelector(".project-details-header")) {
     const params = new URLSearchParams(window.location.search);
     const projectId = params.get("id");
     if (!projectId) return;
@@ -722,49 +726,57 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(project => {
         console.log("Loaded project:", project);
 
-        document.getElementById("title").textContent = project.title;
-        document.getElementById("tagline").textContent = project.tagline;
-        document.getElementById("problem").textContent = project.problem;
-        document.getElementById("solution").textContent = project.solution;
-        document.getElementById("impact").textContent = project.impact;
-        document.getElementById("challenges").textContent = project.challenges;
-        document.getElementById("learning").textContent = project.learning;
-        document.getElementById("date").textContent = project.date;
-        document.getElementById("category").textContent = project.category;
-        document.getElementById("status").textContent = project.status;
-        document.getElementById("repo").href = project.repo;
+        // Basic fields
+        if (project.title) document.getElementById("title").textContent = project.title;
+        if (project.tagline) document.getElementById("tagline").textContent = project.tagline;
+        if (project.problem) document.getElementById("problem").textContent = project.problem;
+        if (project.solution) document.getElementById("solution").textContent = project.solution;
+        if (project.impact) document.getElementById("impact").textContent = project.impact;
+        if (project.challenges) document.getElementById("challenges").textContent = project.challenges;
+        if (project.learning) document.getElementById("learning").textContent = project.learning;
+        if (project.date) document.getElementById("date").textContent = project.date;
+        if (project.category) document.getElementById("category").textContent = project.category;
+        if (project.status) document.getElementById("status").textContent = project.status;
+        if (project.repo) document.getElementById("repo").href = project.repo;
 
         // Tags
         const tagsContainer = document.getElementById("tags");
         tagsContainer.innerHTML = "";
-        project.tags.forEach(tag => {
-          const span = document.createElement("span");
-          span.textContent = tag;
-          span.className = "tag";
-          tagsContainer.appendChild(span);
-        });
+        if (Array.isArray(project.tags)) {
+          project.tags.forEach(tag => {
+            const span = document.createElement("span");
+            span.textContent = tag;
+            span.className = "tag";
+            tagsContainer.appendChild(span);
+          });
+        }
 
         // Tools
         const toolsContainer = document.getElementById("tools");
         toolsContainer.innerHTML = "";
-        project.tools.forEach(tool => {
-          const div = document.createElement("div");
-          div.textContent = tool;
-          div.className = "tool";
-          toolsContainer.appendChild(div);
-        });
+        if (Array.isArray(project.tools)) {
+          project.tools.forEach(tool => {
+            const div = document.createElement("div");
+            div.textContent = tool;
+            div.className = "tool";
+            toolsContainer.appendChild(div);
+          });
+        }
 
         // Metrics
         const metricsList = document.getElementById("metrics");
         metricsList.innerHTML = "";
-        project.metrics.forEach(metric => {
-          const li = document.createElement("li");
-          li.textContent = metric;
-          metricsList.appendChild(li);
-        });
+        if (Array.isArray(project.metrics)) {
+          project.metrics.forEach(metric => {
+            const li = document.createElement("li");
+            li.textContent = metric;
+            metricsList.appendChild(li);
+          });
+        }
       })
       .catch(err => {
         console.error("Fetch error:", err);
       });
   }
 });
+
