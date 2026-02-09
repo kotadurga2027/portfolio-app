@@ -186,10 +186,12 @@ function renderExperience(items = []) {
   }
 
   timeline.innerHTML = items
-    .map((exp) => {
-      const description = safeText(exp.description);
+    .map((exp, idx) => {
+      const summary = Array.isArray(exp.description)
+        ? safeText(exp.description[0])
+        : safeText(exp.description || exp.responsibilities?.[0] || "");
       return `
-        <article class="timeline-item">
+        <article class="timeline-item" data-exp-index="${idx}">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <div class="timeline-header">
@@ -198,13 +200,111 @@ function renderExperience(items = []) {
             </div>
             <p class="company">${esc(exp.company || "")}</p>
             <ul class="achievements">
-              <li>${esc(description)}</li>
+              <li>${esc(summary)}</li>
             </ul>
           </div>
         </article>
       `;
     })
     .join("");
+
+  setupExperiencePopup(items);
+}
+
+function setupExperiencePopup(items = []) {
+  const timeline = qs("#experienceTimeline");
+  if (!timeline) return;
+  const timelineItems = qsa(".timeline-item", timeline);
+  if (!timelineItems.length) return;
+
+  let overlay = qs(".experience-overlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "experience-overlay";
+    overlay.innerHTML = `
+      <div class="experience-popup" role="dialog" aria-modal="true">
+        <button type="button" class="experience-popup-close" aria-label="Close experience details">
+          <i class="fas fa-xmark"></i>
+        </button>
+        <h3 class="experience-popup-title"></h3>
+        <p class="experience-popup-meta"></p>
+        <ul class="experience-popup-list"></ul>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+  }
+
+  const popup = qs(".experience-popup", overlay);
+  const titleEl = qs(".experience-popup-title", overlay);
+  const metaEl = qs(".experience-popup-meta", overlay);
+  const listEl = qs(".experience-popup-list", overlay);
+  const closeBtn = qs(".experience-popup-close", overlay);
+
+  let closeTimer = null;
+  let pinned = false;
+
+  const clearCloseTimer = () => {
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+  };
+
+  const closePopup = () => {
+    overlay.classList.remove("open");
+    pinned = false;
+  };
+
+  const scheduleClose = () => {
+    clearCloseTimer();
+    closeTimer = setTimeout(() => {
+      if (!pinned) closePopup();
+    }, 120);
+  };
+
+  const openPopup = (exp) => {
+    if (!exp) return;
+    titleEl.textContent = safeText(exp.title, "Experience");
+    metaEl.textContent = `${safeText(exp.company)} | ${safeText(exp.period)}`;
+
+    const points = Array.isArray(exp.responsibilities) && exp.responsibilities.length
+      ? exp.responsibilities
+      : [safeText(exp.description)].filter(Boolean);
+
+    listEl.innerHTML = points.map((point) => `<li>${esc(point)}</li>`).join("");
+    overlay.classList.add("open");
+  };
+
+  timelineItems.forEach((itemEl) => {
+    const index = Number(itemEl.dataset.expIndex);
+    const exp = items[index];
+
+    itemEl.addEventListener("mouseenter", () => {
+      if (pinned) return;
+      clearCloseTimer();
+      openPopup(exp);
+    });
+
+    itemEl.addEventListener("mouseleave", () => {
+      if (!pinned) scheduleClose();
+    });
+
+    itemEl.addEventListener("click", () => {
+      pinned = true;
+      clearCloseTimer();
+      openPopup(exp);
+    });
+  });
+
+  popup.addEventListener("mouseenter", clearCloseTimer);
+  popup.addEventListener("mouseleave", () => {
+    if (!pinned) scheduleClose();
+  });
+
+  closeBtn.addEventListener("click", closePopup);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closePopup();
+  });
 }
 
 function renderCertifications(certifications = {}) {

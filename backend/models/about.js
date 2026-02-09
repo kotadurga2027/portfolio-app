@@ -11,7 +11,8 @@ const aboutSchema = new mongoose.Schema({
       title: { type: String, required: true },
       company: { type: String },
       period: { type: String },       // e.g. "2020–2024"
-      description: { type: String }
+      description: { type: String },  // one-line summary
+      responsibilities: [{ type: String }] // detailed bullet points
     }
   ],
   certifications: {
@@ -20,5 +21,5 @@ const aboutSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-module.exports = mongoose.model("About", aboutSchema, "about");
+module.exports = mongoose.model("About", aboutSchema, "abouts");
 

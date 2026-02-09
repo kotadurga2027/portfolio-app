@@ -4,26 +4,42 @@
     "image": "assets/images/profile.jpeg",
     "paragraphs": [
       "I'm a DevOps Engineer with 6+ years of experience in building and maintaining scalable cloud infrastructure.",
-      "My passion lies in automating everything — from CI/CD pipelines to infrastructure provisioning — ensuring systems are reliable, secure, and cost-effective."
+      "My passion lies in automating everything - from CI/CD pipelines to infrastructure provisioning - ensuring systems are reliable, secure, and cost-effective."
     ]
   },
   "experience": [
     {
       "title": "Senior DevOps Engineer",
       "company": "Tata Consultancy Services | Ericsson",
-      "period": "2021 – Present",
-      "description": "Leading infrastructure automation, managing Kubernetes clusters, and implementing GitOps practices."
+      "period": "2021 - Present",
+      "description": "Leading infrastructure automation, Kubernetes operations, and GitOps-based delivery.",
+      "responsibilities": [
+        "Engineered CI/CD pipelines that improved release speed and delivery reliability.",
+        "Architected cloud infrastructure with Infrastructure as Code for secure, repeatable deployments.",
+        "Orchestrated Kubernetes deployments and administered clusters for stability and scale.",
+        "Automated platform operations using Python (boto3) and shell scripting.",
+        "Implemented monitoring and alerting to detect issues proactively and protect uptime.",
+        "Led incident response and mentored engineers through DevOps best practices."
+      ]
     },
     {
       "title": "GIS Engineer",
       "company": "Cyient Ltd",
-      "period": "2018 – 2021",
-      "description": "Contributed to large-scale geospatial automation using Python and MySQL — foundational experience that shaped my DevOps mindset."
+      "period": "2018 - 2021",
+      "description": "Built geospatial automation workflows with Python and MySQL.",
+      "responsibilities": [
+        "Developed automation scripts for geospatial data processing tasks.",
+        "Built and maintained MySQL-backed workflows for operational data.",
+        "Improved data quality checks and reduced manual validation effort.",
+        "Collaborated with cross-functional teams to streamline delivery.",
+        "Supported production issues with structured debugging and root-cause analysis.",
+        "Established engineering foundations that later accelerated my DevOps growth."
+      ]
     }
   ],
   "certifications": {
     "acquired": [
-     "AWS Educate: Completed foundational AWS Cloud and Cloud Operations badges"
+      "AWS Educate: Completed foundational AWS Cloud and Cloud Operations badges"
     ],
     "planned": [
       "AWS Cloud Practitioner",
