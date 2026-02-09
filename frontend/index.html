@@ -1,191 +1,181 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kota Durga | DevOps Engineer</title>
+  <title>Kota Durga | Senior DevOps Engineer - CI/CD, Cloud Infrastructure & Automation</title>
+
+  <meta name="description" content="Senior DevOps Engineer with 6+ years experience. Specializing in CI/CD pipelines, cloud infrastructure, Kubernetes, Docker, Terraform, and automation." />
+  <meta name="keywords" content="DevOps Engineer, CI/CD, Kubernetes, Docker, Terraform, AWS, Cloud Infrastructure, Automation" />
+  <meta name="author" content="Kota Durga" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Kota Durga - Senior DevOps Engineer" />
+  <meta property="og:description" content="DevOps portfolio with real projects, certifications, and engineering experience." />
+  <meta property="og:url" content="https://portfolio.kotadurgagangumalla.fun/" />
+
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+  <header class="navbar compact">
+    <div class="nav-left">
+      <a href="#home" class="logo-link" aria-label="Go to home">
+        <div class="logo">
+          <span class="logo-icon"><i class="fas fa-gear"></i></span>
+          <span class="logo-text">Kota Durga</span>
+        </div>
+      </a>
+    </div>
 
-  <!-- NAVBAR -->
-<header class="navbar">
-  <div class="nav-left">
-    <h3 class="logo">KD</h3>
-  </div>
+    <nav class="nav-center" id="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#endorsements">Endorsements</a>
+    </nav>
 
-  <nav class="nav-center" id="nav-links">
-    <a href="index.html" class="active">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="endorsements.html">Endorsements</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+    <div class="nav-right">
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+      <a href="assets/devops_engineer_kota_durga_resume.pdf" download class="btn blue small">
+        <i class="fas fa-download"></i> Resume
+      </a>
+    </div>
+  </header>
 
-  <div class="nav-right">
-    <button class="hamburger" id="hamburger">☰</button>
-    <a href="assets/devops_engineer_kota_durga_resume.pdf" download class="btn blue small">
-      <i class="fas fa-download"></i> Download Resume
-    </a>
-  </div>
-</header>
+  <section class="hero compact" id="home">
+    <div class="hero-container fade-in">
+      <div class="hero-layout">
+        <div class="hero-image">
+          <img id="heroImage" src="assets/images/profile.jpeg" alt="Kota Durga" class="pulse-glow" />
+        </div>
 
+        <div class="hero-content">
+          <p class="intro">Hello, I'm</p>
+          <h1 id="heroName">Kota Durga</h1>
+          <h2 class="blue-text" id="heroRole">Senior DevOps Engineer</h2>
 
-  <!-- HERO -->
-<section class="hero">
-  <div class="hero-container">
-    <div class="hero-layout">
-      <div class="hero-image">
-        <img src="assets/images/profile.jpeg" alt="Kota Durga">
+          <p class="hero-desc" id="heroDescription">
+            Building scalable cloud infrastructure with modern DevOps practices, CI/CD automation, and infrastructure as code.
+          </p>
+          <p class="hero-desc hero-desc-extra" id="heroDescriptionExtra">
+            Focused on real-time production reliability, automation standards, and scalable DevOps architecture.
+          </p>
+
+          <div class="hero-actions">
+            <a href="https://github.com/kotadurga2027" class="btn outline" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/kota-durga/" class="btn outline" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-content">
-        <p class="intro">Hello, I'm</p>
-        <h1>Kota Durga</h1>
-        <h2 class="blue-text">And I'm a DevOps Engineer!</h2>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h3 class="stat-number" id="yearsExperience">0+</h3>
+          <p>Years DevOps</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" id="projectCount">0+</h3>
+          <p>Projects Production</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" id="cicdPipelines">0+</h3>
+          <p>CI/CD Pipelines</p>
+        </div>
+        <div class="stat-item">
+          <h3 class="stat-number" id="technologiesCount">0+</h3>
+          <p>Tools Mastered</p>
+        </div>
+      </div>
 
-        <p class="hero-desc">
-          I design and build automated, scalable, and reliable cloud infrastructure using DevOps best practices and modern tooling.
-        </p>
-
-        <div class="hero-actions">
-          <a href="https://github.com/kotadurga2027" class="btn outline">
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/kota-durga/" class="btn outline">
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-          <a href="contact.html" class="btn pink">
-            <i class="fas fa-envelope"></i> Contact Me
-          </a>
+      <div class="smooth-scroll-cta">
+        <div class="section-jump-actions section-jump-pills">
+          <a href="#experience" class="jump-pill">Experience</a>
+          <a href="#skills" class="jump-pill">Skills</a>
+          <a href="#projects" class="jump-pill">Projects</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <h3>6+</h3>
-        <p>Years of Experience</p>
-      </div>
-      <div class="stat-item">
-        <h3 id="projectCount">0</h3>
-        <p>Projects Completed</p>
-      </div>
-      <div class="stat-item">
-        <h3 id="technologiesCount">0</h3>
-        <p>Technologies Mastered</p>
-      </div>
-      <div class="stat-item">
-        <h3 id="visitorCount">0+</h3>
-        <p>Visitors</p>
+  <section class="section experience-section" id="experience">
+    <div class="section-container">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="timeline" id="experienceTimeline"></div>
+      <h3 class="cert-inline-title">Certifications</h3>
+      <div class="cert-pill-row" id="certificationsGrid"></div>
+    </div>
+  </section>
+
+  <section class="section skills-section" id="skills">
+    <div class="section-container">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="skills-intro">Technologies and tools I use to build reliable, scalable infrastructure.</p>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <section class="section projects-section" id="projects">
+    <div class="section-container">
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="project-grid" id="projectGrid"></div>
+      <div class="text-center" style="margin-top: 2rem;">
+        <a href="projects.html" class="btn outline">View All Projects</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-
-  <!-- Featured Projects -->
-<section class="home-projects">
-  <h2>Featured Projects</h2>
-  <div class="project-preview-container">
-    <div class="project-preview-grid"></div>
-    <div class="view-all">
-      <a href="projects.html">View all projects →</a>
+  <section class="section endorsements-section" id="endorsements">
+    <div class="section-container">
+      <h2 class="section-title">Endorsements</h2>
+      <div class="endorsement-grid" id="endorsementGrid"></div>
+      <div class="text-center" style="margin-top: 2rem;">
+        <a href="endorsements.html" class="btn outline">View All Endorsements</a>
+      </div>
     </div>
-</section>
+  </section>
 
-
-  <!-- SKILLS SNAPSHOT -->
-<section class="home-skills">
-  <h2>Skills</h2>
-  <div class="skill-tags"></div>
-  <div class="explore-skills">
-    <a href="skills.html">Explore skills →</a>
-  </div>
-</section>
-
-<section class="endorsements-preview">
-  <h2>Endorsements</h2>
-
-  <div class="endorsement-grid"></div>
-
-  <a href="endorsements.html" class="view-all">
-    View all endorsements →
-  </a>
-</section>
-
-<!-- =========================
-     SKILL VOTING SECTION
-========================= -->
-
-<section class="skill-vote">
-  <h2>🏆 Vote for Best Skill</h2>
-  <div class="vote-list">
-    <!-- .vote-item blocks injected by script.js -->
-  </div>
-</section>
-
-
-<!-- =========================
-     QUICK FEEDBACK
-========================= -->
-<section class="quick-feedback">
-  <h2 class="feedback-title">
-    💬 Quick Feedback
-  </h2>
-
-  <p class="feedback-sub">
-    How would you rate this portfolio?
-  </p>
-
-  <div class="feedback-box">
-
-    <div class="rating-options">
-      <div class="rating-card">😕<span>Needs Work</span></div>
-      <div class="rating-card">🙂<span>Okay</span></div>
-      <div class="rating-card">😊<span>Good</span></div>
-      <div class="rating-card active">😄<span>Great</span></div>
-      <div class="rating-card">🤩<span>Amazing</span></div>
+  <section class="section quick-feedback" id="feedback">
+    <div class="section-container">
+      <h2 class="section-title">Quick Feedback</h2>
+      <p class="feedback-sub">Share how useful this portfolio is for your DevOps learning journey.</p>
+      <div class="feedback-box">
+        <div class="rating-options">
+          <div class="rating-card active"><span>Excellent</span></div>
+          <div class="rating-card"><span>Good</span></div>
+          <div class="rating-card"><span>Needs More</span></div>
+        </div>
+        <textarea class="feedback-input" placeholder="Your feedback (optional)"></textarea>
+        <button class="feedback-submit" type="button">Submit Feedback</button>
+      </div>
     </div>
+  </section>
 
-    <textarea
-      class="feedback-input"
-      placeholder="Any additional comments? (optional)"
-    ></textarea>
-
-    <button class="feedback-submit">
-      ➜ Submit Feedback
-    </button>
-
-  </div>
-</section>
-
-
-
-  <!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-content">
-    <p class="footer-left">© 2026 Kota Durga · DevOps Portfolio</p>
-    <div class="footer-right">
-      <a href="assets/devops_engineer_kota_durga_resume.pdf" download>
-        <i class="fas fa-file-alt"></i> Resume
-      </a>
-      <a href="https://github.com/kotadurga2027" target="_blank">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://linkedin.com/in/kotadurga2027" target="_blank">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="mailto:kotadurga.devops@gmail.com">
-        <i class="fas fa-envelope"></i>
-      </a>
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-left">&copy; 2026 Kota Durga · DevOps Engineer</p>
+      <div class="footer-right">
+        <a href="assets/devops_engineer_kota_durga_resume.pdf" download>
+          <i class="fas fa-file-alt"></i> Resume
+        </a>
+        <a href="https://github.com/kotadurga2027" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/kota-durga" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:kotadurga.devops@gmail.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
